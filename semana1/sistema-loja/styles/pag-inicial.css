@@ -1,0 +1,21 @@
+.main {
+    background-color: rgba(173, 216, 230, 0.541);
+    height: 550px;
+}
+
+.main p {
+    margin-top: 470px;
+}
+
+.footer {
+    background-color: rgba(173, 216, 230, 0.863);
+}
+
+.footer p {
+    text-align: center;
+}
+
+.footer div {
+    width: 160px;
+    margin: 0 auto;
+}
