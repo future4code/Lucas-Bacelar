@@ -1,3 +1,7 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 h1, h2, p, div, body {
     padding: 0px;
     margin: 0px;
@@ -28,15 +32,15 @@ div.header {
 div.nav {
     padding: 14px 0;
     text-align: center;
-    background: rgba(173, 216, 230, 0.747);
+    background: rgba(173, 216, 230, 0.884);
 }
 
 div.nav a {
     font-size: 18px;
     margin: 0 20px;
     text-decoration: none;
-    background-color: white;
-    color: blue;
+    background-color: rgba(104, 154, 170, 0.973);
+    color: white;
     padding: 6px;
     border-radius: 10px;
 }

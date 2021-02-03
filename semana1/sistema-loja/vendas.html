@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/vendas.css">
+    <title>Las Peças</title>
+</head>
+<body>
+    <div class="header">
+        <p class="header-name"><strong>Las Peças</strong></p>
+    </div>
+    
+    <div class="nav">
+        <a href="./index.html">Página Inicial</a>
+        <a href="./ctrl-estoque.html">Controle de Estoque</a>
+        <a href="./add-produto.html">Adicionar Produto</a>
+        <a href="./funcionarios.html">Funcionários</a>
+        <a href="./vendas.html">Vendas</a>
+    </div>
+    <div class="main-container">
+        <div class="main">
+            <p class="historico"><a href="./historico-vendas.html">Histórico de Vendas</a></p>
+            <h2 class="vendas-header">Venda de Produtos</h2>
+
+            <div class="content">
+                <div class="img">
+                    <img src="./img/serra-marmore.jpg" alt="Serra marmore">
+                </div>
+
+                <div class="nome">
+                    Serra Mármore Makita Industrial 100Nh2Z Seco 110V
+                </div>
+                <div class="quantidade">
+                    <input type="number">
+                    <p>16 disponiveis</p>
+                </div>
+                
+                 <div class="preço">
+                    R$588,00
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="img">
+                    <img src="./img/esmerilhadeira-angular.jpg" alt="Esmerilhadeira">
+                </div>
+
+                <div class="nome">
+                    Esmerilhadeira Angular 900W Modelo GWS 9-125S Bosch 220V
+                </div>
+                <div class="quantidade">
+                    <input type="number">
+                    <p>7 disponiveis</p>
+                </div>
+                
+                 <div class="preço">
+                    R$478,45
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="img">
+                    <img src="./img/aspirador.jpg" alt="Aspirador">
+                </div>
+
+                <div class="nome">
+                    Aspirador de Água e Pó, WAP, GTW 10, Amarelo/Preto, 110V
+                </div>
+                <div class="quantidade">
+                    <input type="number">
+                    <p>2 disponiveis</p>
+                </div>
+                
+                 <div class="preço">
+                    R$285,99
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="img">
+                    <img src="./img/furadeira.jpg" alt="Furadeira">
+                </div>
+
+                <div class="nome">
+                    Furadeira de Impacto Bosch GSB 450 RE 450W 220V 
+                </div>
+                <div class="quantidade">
+                    <input type="number">
+                    <p>20 disponiveis</p>
+                </div>
+                
+                 <div class="preço">
+                    R$ 236,90
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="img">
+                    <img src="./img/ferro-de-solda.jpg" alt="Ferro de solda">
+                </div>
+
+                <div class="nome">
+                    Tramontina 43752503, Ferro de Solda Tensão 
+                </div>
+                <div class="quantidade">
+                    <input type="number">
+                    <p>15 disponiveis</p>
+                </div>
+                
+                 <div class="preço">
+                    R$ 27,70
+                </div>
+            </div>
+
+            <div class="content pagamento">
+                <div class="pagamento-container">
+                    <div class="nome-vtotal"> 
+                        Valor Total    
+                    </div>
+                    <div class="valor">
+                        R$ 0,00
+                    </div>
+                </div>
+                <form class="form-pagamento">
+                    <div>
+                        <input type="radio" id="Dinheiro" name="pagamento" value="Dinheiro"
+                            checked>
+                        <label for="Dinheiro">Dinheiro</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" id="Cartao" name="pagamento" value="Cartao">
+                        <label for="Cartao">Cartao</label>
+                    </div>
+                    <div>
+                        <button>Comprar</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

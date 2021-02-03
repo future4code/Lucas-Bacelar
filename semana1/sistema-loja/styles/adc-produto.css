@@ -1,6 +1,7 @@
 form {
     background-color:rgb(173, 216, 230);
-    width: 500px;
+    width: 700px;
+    height: 300px;
     padding: 20px;
     border-radius: 20px;
     margin: 40px auto;
@@ -8,7 +9,6 @@ form {
 
 .form-campo {
     background-color:rgb(125, 196, 219);
-    /* width: 300px; */
     font-size: 18px;
     border-radius: 10px;
     padding: 10px;
@@ -16,9 +16,28 @@ form {
 }
 
 .form-add button {
-    width: 80px;
-    margin: 0 210px;
-    padding: 10px;
+    width: 130px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 22px;
     background-color: rgb(125, 196, 219);
     border-radius: 10px;
 }
+
+form > div.form-campo:nth-child(1) > label {
+    margin-right: 70px;
+}
+
+form > div.form-campo:nth-child(2) > label {
+    margin-right: 8px;
+}
+
+form > div.form-campo:nth-child(3) > label {
+    margin-right: 62.5px;
+}
+
+form > div.form-campo > input {
+    width: 300px;    
+}
+
