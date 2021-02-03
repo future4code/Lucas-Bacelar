@@ -1,0 +1,42 @@
+h1, h2, p, div, body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.subtitulo {
+    background-color:  rgb(173, 216, 230);
+    padding: 10px;
+    font-size: 35px;
+    width: 305px;
+    border-radius: 20px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+div.header {
+    background: lightblue;
+    text-align: center;
+    height: 65px;
+    padding: 10px;
+}
+
+.header-name {
+    padding: 10px;
+    font-size: 35px;
+}
+
+div.nav {
+    padding: 14px 0;
+    text-align: center;
+    background: rgba(173, 216, 230, 0.747);
+}
+
+div.nav a {
+    font-size: 18px;
+    margin: 0 20px;
+    text-decoration: none;
+    background-color: white;
+    color: blue;
+    padding: 6px;
+    border-radius: 10px;
+}
