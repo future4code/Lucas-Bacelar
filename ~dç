@@ -1,0 +1,62 @@
+[33mcommit ce52dbb5e2af694d3408265ae029c301d7ec66a2[m[33m ([m[1;36mHEAD -> [m[1;32msemana1-aula4[m[33m)[m
+Merge: 64a8fa0 50d03c9
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Fri Jan 29 11:06:12 2021 -0300
+
+    Merge pull request #5 from future4code/semana0-aula2-2
+    
+    Adição das musicas favoritas
+
+[33mcommit 64a8fa073fcd6ef40a4355e975ea25996a7ff135[m
+Merge: 0719811 b58bb47
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Fri Jan 29 11:05:53 2021 -0300
+
+    Merge pull request #7 from future4code/semana0-aula2-4
+    
+    Adição de minhas comidas favoritas
+
+[33mcommit 071981146c69622958c0126e8cfabd508d5576d9[m
+Merge: 527f446 0f0a245
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Fri Jan 29 11:05:36 2021 -0300
+
+    Merge pull request #8 from future4code/semana0-aula2-5
+    
+    Adição das redes sociais que utilizo
+
+[33mcommit 0f0a245e0c3c37ee238f3c339132eb58be73eff5[m[33m ([m[1;31morigin/semana0-aula2-5[m[33m, [m[1;32msemana0-aula2-5[m[33m)[m
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Thu Jan 28 15:47:45 2021 -0300
+
+    Adição das redes sociais que utilizo
+
+[33mcommit b58bb4761d4bb0f5a8cb664725e8263df80bd000[m[33m ([m[1;31morigin/semana0-aula2-4[m[33m, [m[1;32msemana0-aula2-4[m[33m)[m
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Thu Jan 28 15:40:56 2021 -0300
+
+    Adição das minhas comidas favoritas
+
+[33mcommit d73601e76a7f756534c68f781ef934d1c5d11d3e[m[33m ([m[1;31morigin/semana0-aula2-3[m[33m, [m[1;32msemana0-aula2-3[m[33m)[m
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Thu Jan 28 15:37:16 2021 -0300
+
+    Adição dos meus filmes favoritos
+
+[33mcommit 50d03c9b0eb642f4748b1ee5f0202181edb2b1b4[m[33m ([m[1;31morigin/semana0-aula2-2[m[33m, [m[1;32msemana0-aula2-2[m[33m)[m
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Thu Jan 28 15:32:53 2021 -0300
+
+    Adiçao das minhas musicas favoritas
+
+[33mcommit 8b68b4a16dc9111ffaaa4c8bdf547a3eeb28e782[m[33m ([m[1;31morigin/semana0-aula2-1[m[33m, [m[1;32msemana0-aula2-1[m[33m)[m
+Author: Lucas Bacelar <lucasbacela@hotmail.com>
+Date:   Thu Jan 28 15:27:42 2021 -0300
+
+    Adiçao da minha mini biografia
+
+[33mcommit 527f4462b741bd3578d47fedefe21d7db3a5b7a3[m
+Author: João Vinicius Alves <jvp.alves@hotmail.com>
+Date:   Sun Jan 24 14:52:38 2021 -0300
+
+    Initial commit
