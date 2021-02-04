@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/historico-vendas.css">
+    <title>Las Peças</title>
+</head>
+<body>
+    <div class="header">
+        <p class="header-name"><strong>Las Peças</strong></p>
+    </div>
+    
+    <div class="nav">
+        <a href="./index.html">Página Inicial</a>
+        <a href="./ctrl-estoque.html">Controle de Estoque</a>
+        <a href="./add-produto.html">Adicionar Produto</a>
+        <a href="./funcionarios.html">Funcionários</a>
+        <a href="./vendas.html">Vendas</a>
+    </div>
+
+    <h1>Histórico de Vendas</h1>
+
+    <form class="filtro" action="">
+        <label for="data">Filtre os dados pela data</label>
+        <input type="text" id="data" name="data">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Produto</th>
+                <th>Funcionario</th>
+                <th>Pagamento</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>14/05/2020</td>
+                <td>18:00</td>
+                <td>Serra Mármore Makita Industrial 100Nh2Z Seco 110V</td>
+                <td>Lucas</td>
+                <td>Cartão</td>
+            </tr>
+            <tr>
+                <td>20/05/2020</td>
+                <td>08:00</td>
+                <td>Esmerilhadeira Angular 900W Modelo GWS 9-125S Bosch 220V</td>
+                <td>Lucas</td>
+                <td>Cartão</td>
+            </tr>
+            <tr>
+                <td>01/06/2020</td>
+                <td>10:00</td>
+                <td>Furadeira de Impacto Bosch GSB 450 RE 450W 220V </td>
+                <td>Ana</td>
+                <td>Dinheiro</td>
+            </tr>
+            <tr>
+                <td>09/06/2020</td>
+                <td>21:00</td>
+                <td>Aspirador de Água e Pó, WAP, GTW 10, Amarelo/Preto, 110V</td>
+                <td>Pedro</td>
+                <td>Cartão</td>
+            </tr>
+            <tr>
+                <td>08/07/2020</td>
+                <td>15:00</td>
+                <td>Aspirador de Água e Pó, WAP, GTW 10, Amarelo/Preto, 110V</td>
+                <td>Ana</td>
+                <td>Dinheiro</td>
+            </tr>
+        </tbody>
+    </table>
+</body>

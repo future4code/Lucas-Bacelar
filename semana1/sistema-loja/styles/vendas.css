@@ -1,0 +1,106 @@
+div.main-container {
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 30px 160px;
+}
+
+div.main {
+    background-color: #FFFFFF;
+    height: 700px;
+    margin: 0 auto;
+    padding: 60px;
+}
+
+.vendas-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+div.content {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+}
+
+div.content > div {
+    display: inline-block;
+    /* border: 1px solid red; */
+    vertical-align: middle;
+}
+
+img {
+    width: 120px;
+}
+
+.nome {
+    margin-left: 50px;
+    width: 400px
+}
+
+.quantidade {
+    margin-left: 130px;
+}
+
+input[type="number"] {
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid rgba(37, 37, 37, 0.158);
+    display: block;
+    width: 100px;
+    height: 40px;
+}
+
+.preço {
+    margin-top: -25px;
+    margin-left: 120px;
+    font-size: 22px;
+}
+
+.pagamento {
+    text-align: right;
+    margin-right: 25px;
+}
+
+.pagamento > .pagamento-container {
+    width: 268px;
+    margin-top: 10px;
+    margin-bottom: -15px;
+    margin-right: -25px;
+}
+
+.pagamento-container > div {
+    display: inline-block;
+    width: 130px;
+    height: 60px;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.nome-vtotal, .valor {
+    font-size: 23px;
+}
+
+.form-pagamento > div{
+    display: inline-block;
+}
+
+.form-pagamento > div:nth-of-type(3){
+    display: block;
+    margin-top: 20px;
+}
+
+.historico a{
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+
+
+
+
+
+
