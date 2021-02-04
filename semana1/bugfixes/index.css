@@ -78,6 +78,14 @@ div>p:first-child {
     padding: 15px 0px;
 }
 
+ol > li {
+        text-indent: 18px;
+}
+
+ol > li:nth-of-type(2){
+    text-indent: 37px;
+}
+
 #container-de-descricao > p {
     display: block;
 }
