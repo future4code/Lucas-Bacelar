@@ -112,6 +112,14 @@ td button {
     color: black;
 }
 
+td button:hover {
+    background-color: #d4ba43;
+}
+
+td button:active {
+    color: white;
+}
+
 td img {
     width: 40px;
 }
