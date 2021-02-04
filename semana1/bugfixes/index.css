@@ -140,7 +140,9 @@ td button:active {
     color: white;
 }
 
-
+td img {
+    width: 40px;
+}
 
 .container-do-search {
     margin-top: 20px;
@@ -155,7 +157,7 @@ td button:active {
     opacity: 0.2;
 }
 
-.container-do-search img:active {
+.container-do-search img:active{
     opacity: 1;
 }
 
