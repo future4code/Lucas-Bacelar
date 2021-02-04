@@ -133,6 +133,11 @@ td img {
     width: 0.7%;
 }
 
+.container-do-search input[type="text"] {
+    border: none;
+    border-bottom: 2px solid black;
+}
+
 
 #back-button {
     background-color: white;
