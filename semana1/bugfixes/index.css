@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/** 
+  *
+  *  ESTILOS GERAIS 
+  *
+  **/
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    background-color: #fe7e02;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: center;
+}
+
+input {
+    height: 20px;
+    width: 500px;
+}
+
+button:focus {
+    color: white;
+}
+
+img {
+    width: 100px;
+}
+
+div>p:first-child {
+    display: inline;
+}
+
+.botao-amarelo {
+    background-color: #ffaf43;
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.botao-amarelo:hover {
+    background-color: #c44f00;
+}
+
+.container {
+    height: 500px;
+    text-align: center;
+}
+
+.icone {
+    height: 15px;
+}
+
+input, button {
+    outline: none;
+}
+
+
+/** 
+  *
+  *  ESTILOS HOME 
+  *
+  **/
+
+#container-de-descricao {
+    background-color: #2274a5;
+    color: white;
+    box-sizing: border-box;
+    padding-top: 100px;
+}
+
+#container-de-descricao>ol {
+    padding: 15px 0px;
+}
+
+ol > li {
+        text-indent: 18px;
+}
+
+ol > li:nth-of-type(2){
+    text-indent: 37px;
+}
+
+#container-de-descricao > p {
+    display: block;
+}
+
+#container-para-comprar {
+    background-color: #e7eb90;
+}
+
+#container-para-comprar > p {
+    color: #c44f00;
+    display: block;
+    padding: 100px 0;
+    font-size: 60px;
+}
+
+
+/**
+  *
+  *  ESTILOS COMPRAR 
+  *
+  **/
+
+tr > td:nth-child(2),
+div:last-child {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    width: 60%;
+    table-layout: fixed;
+    text-align: center;
+}
+
+td button {
+    background-color: #fadf63;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+td button:hover {
+    background-color: #d4ba43;
+}
+
+td button:active {
+    color: white;
+}
+
+td img {
+    width: 40px;
+}
+
+.container-do-search {
+    margin-top: 20px;
+    height: 100px;
+}
+
+.container-do-search img {
+    width: 0.7%;
+}
+
+.container-do-search img:hover {
+    opacity: 0.2;
+}
+
+.container-do-search img:active{
+    opacity: 1;
+}
+
+.container-do-search input[type="text"] {
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+
+#back-button {
+    background-color: white;
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 10px;
+    color: black;
+
+    display: block;
+    margin: 180px auto 0;
+}
+
+#back-button:hover {
+    background-color: #635a3d
+}
