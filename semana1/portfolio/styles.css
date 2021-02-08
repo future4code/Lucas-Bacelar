@@ -1,6 +1,8 @@
 /* font-family: 'Lobster', cursive;
 font-family: 'Roboto', sans-serif; */
 
+/* Geral */
+
 html, body {
     font-family: 'Roboto', sans-serif;
     font-size: 8px;
@@ -8,8 +10,12 @@ html, body {
     margin: 0;
 }
 
+section {
+    background-image: url(./img/);
+    height: 900px;
+}
 
-/* Home */
+/* Header */
 
 header {
     height: 92px;
@@ -30,7 +36,7 @@ div.logo > span {
 
 header > nav {
     display: inline-block;
-    margin-left: 600px;
+    margin-left: 870px;
     line-height: 92px;
 }
 
@@ -39,8 +45,59 @@ header > nav {
     font-size: 2.5em;
     text-decoration: none;
     color: inherit;
+    font-weight: 500;
 }
 
 .nav-link:last-of-type{
     margin-right: 0px;
+}
+
+/* Home */
+
+section.home {
+    box-sizing: border-box;
+    height: 1003px;
+    background-image: url(./img/fundo1.jpg);
+    padding-top: 98px;
+}
+
+.home-conteudo {
+    margin: 0 auto;
+    background: linear-gradient(128.24deg, rgba(139, 171, 233, 0.8) 15.55%, rgba(255, 255, 255, 0.4) 100%);
+    border-radius: 30px;
+    width: 802px;
+    height: 707px;
+}
+
+.home-conteudo > img {
+    display: block;
+    width: 220px;
+    height: 218.67px;
+    padding-top: 71px;
+    margin: 0 auto;
+}
+
+.home-conteudo > h2 {
+    text-align: center;
+    font-size: 6em;
+    font-weight: 400;
+    margin: 25.33px 0 0px;
+}
+
+.home-conteudo > p {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 25px auto 0;
+    width: 600px;
+}
+
+.home-conteudo > p > span {
+    font-weight: 500;
+}
+
+/* Sobre mim */
+
+section {
+    background-image: url(./img/fundo2.jpg);
+    height: 900px;
 }
