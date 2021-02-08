@@ -7,6 +7,17 @@ body {
     color: white;
 }
 
+.green-background, 
+.yellow-background, 
+.pink-background, 
+.blue-background,
+.red-background, 
+.lightgreen-background, 
+.purple-background {
+    width: 100%;
+    height: 100%;
+}
+
 .green-background {
     background-color: green;
 }
@@ -33,4 +44,37 @@ body {
 
 .purple-background {
     background-color: purple;
+}
+
+/* Código */
+
+#main-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 35px 3fr 1fr 35px;
+}
+
+#top-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr;
+    grid-column: 1/4;
+}
+
+.pink-background {
+    grid-column: 1/4;
+}
+
+#middle-container {
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+#vertical-middle-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
 }

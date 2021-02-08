@@ -7,6 +7,20 @@ body {
     color: white;
 }
 
+.green-background, 
+.yellow-background, 
+.pink-background, 
+.blue-background,
+.red-background, 
+.lightgreen-background, 
+.purple-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 .green-background {
     background-color: green;
 }
@@ -50,23 +64,14 @@ body {
 
 .green-background {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .yellow-background {
     flex: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .pink-background {
     height: 63vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #middle-container {
@@ -79,12 +84,6 @@ body {
     height: 100%;
 }
 
-.blue-background {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 #blank {
     flex: 1;
@@ -96,45 +95,14 @@ body {
     flex: 1;
 }
 
-#image {
+#image, #extra {
     flex: 1;
-    width: 100%;
     height: 100%;
-}
-
-.red-background {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#extra {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-}
-
-.lightgreen-background {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #main-container > div:last-of-type {
     background-color: blue;
     flex: 1;
-}
-
-.purple-background {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 
