@@ -1,0 +1,58 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+.page-container {
+    height: 200vh;
+    background-color: #CCC;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    height: 60px;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar > img {
+    width: 50px;
+    height: 40px;
+    margin-right: 16px;
+}
+
+.search-bar input {
+    width: 400px;
+    height: 38px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+    background-color: rgba(238, 238, 238, 0.466);
+}
+
+.login-form a {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+
+.login-form > .login {
+    padding: 8px 16px;
+    color: #3b49df;
+    font-weight: 600;
+}
+
+.login-form > .create {
+    color: white;
+    font-weight: 600;
+    background-color: #3b49df;
+    padding: 8px 16px;
+    border-radius: 5px;
+}

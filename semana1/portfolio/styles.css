@@ -1,0 +1,84 @@
+/* font-family: 'Lobster', cursive;
+font-family: 'Roboto', sans-serif; */
+
+/* Geral */
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 8px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.page-container {
+}
+
+/* Main Page */
+
+.main-page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 1fr;
+}
+
+header {
+  background-color: #302f2f;
+  color: white;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.logo > span {
+  font-family: "Lobster", cursive;
+  font-size: 4em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  width: 600px;
+}
+
+.nav-link {
+  font-size: 2.5em;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+section.home {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url(./img/fundo1.jpg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.home-conteudo {
+  background: linear-gradient(
+    128.24deg,
+    rgba(139, 171, 233, 0.8) 15.55%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border-radius: 30px;
+
+  width: 35%;
+  height: 80%;
+  display: ;
+}
+
+.home-conteudo img {
+    width: 130px;
+}
