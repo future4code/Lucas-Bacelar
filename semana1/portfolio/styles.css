@@ -3,101 +3,82 @@ font-family: 'Roboto', sans-serif; */
 
 /* Geral */
 
-html, body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 8px;
-    padding: 0;
-    margin: 0;
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 8px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
-section {
-    background-image: url(./img/);
-    height: 900px;
+.page-container {
 }
 
-/* Header */
+/* Main Page */
+
+.main-page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 1fr;
+}
 
 header {
-    height: 92px;
-    background-color: #302F2F;
-    color: white;
-}
+  background-color: #302f2f;
+  color: white;
+  padding: 0 20px;
 
-div.logo {
-    margin-left: 54px;
-    display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 div.logo > span {
-    font-family: 'Lobster', cursive;
-    font-size: 4em;
-    line-height: 92px;
+  font-family: "Lobster", cursive;
+  font-size: 4em;
 }
 
-header > nav {
-    display: inline-block;
-    margin-left: 870px;
-    line-height: 92px;
+nav {
+  display: flex;
+  justify-content: space-around;
+  width: 600px;
 }
 
 .nav-link {
-    margin-right: 100px;
-    font-size: 2.5em;
-    text-decoration: none;
-    color: inherit;
-    font-weight: 500;
+  font-size: 2.5em;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
 }
-
-.nav-link:last-of-type{
-    margin-right: 0px;
-}
-
-/* Home */
 
 section.home {
-    box-sizing: border-box;
-    height: 1003px;
-    background-image: url(./img/fundo1.jpg);
-    padding-top: 98px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url(./img/fundo1.jpg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5%;
 }
 
 .home-conteudo {
-    margin: 0 auto;
-    background: linear-gradient(128.24deg, rgba(139, 171, 233, 0.8) 15.55%, rgba(255, 255, 255, 0.4) 100%);
-    border-radius: 30px;
-    width: 802px;
-    height: 707px;
+  background: linear-gradient(
+    128.24deg,
+    rgba(139, 171, 233, 0.8) 15.55%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border-radius: 30px;
+
+  width: 35%;
+  height: 80%;
+  display: ;
 }
 
-.home-conteudo > img {
-    display: block;
-    width: 220px;
-    height: 218.67px;
-    padding-top: 71px;
-    margin: 0 auto;
-}
-
-.home-conteudo > h2 {
-    text-align: center;
-    font-size: 6em;
-    font-weight: 400;
-    margin: 25.33px 0 0px;
-}
-
-.home-conteudo > p {
-    font-size: 32px;
-    font-weight: 400;
-    margin: 25px auto 0;
-    width: 600px;
-}
-
-.home-conteudo > p > span {
-    font-weight: 500;
-}
-
-/* Sobre mim */
-
-section {
-    background-image: url(./img/fundo2.jpg);
-    height: 900px;
+.home-conteudo img {
+    width: 130px;
 }
