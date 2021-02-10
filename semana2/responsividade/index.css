@@ -5,6 +5,7 @@ body {
     margin: 0;
 }
 
+
 div {
     border: 1px solid black;
 }
@@ -50,6 +51,7 @@ div > div {
     display: flex;
     flex-flow: row wrap;
     width: 100vw;
+    box-sizing: border-box;
     align-items: flex-start;
 }
 

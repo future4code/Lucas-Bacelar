@@ -12,8 +12,8 @@ div {
 /* Blocos */
 
 #first-block {
-    display: none;
     background-color: red;
+    grid-column: 1/-1;
 }
 
 .blue-block {
@@ -31,7 +31,6 @@ div {
 .black-block {
     background-color: black;
     color: white;
-    height: 400px;
 }
 
 .white-block {
@@ -44,58 +43,98 @@ div {
     display: grid;
     width: 100vw;
 
-    grid-template-columns: ;
-    grid-template-rows: ;
+    row-gap: 10px;
+    column-gap: 10px;
 }
 
 @media screen and (min-device-width: 200px) and (max-device-width: 420px) {
     
-    div > div {
-        flex: 1 98vw;
+    #main-container {
+        grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
+        grid-template-rows: repeat(7, 150px) 400px 400px repeat(3, 150px);
     }
+
+     div > div {
+        grid-column: 1/5;
+    } 
 }
 
 @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
 
+    #main-container {
+        grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
+        grid-template-rows: repeat(5, 150px) 400px 150px 150px;
+    }
+
     .blue-block {
-        flex: 1 45vw;
+       grid-column: 1/3;
     }
     
     .yellow-block {
-        flex: 1 45vw;
+        grid-column: 3/5;
     }
     
     .green-block {
-        flex: 1 95vw;
+        grid-column: 1/5;
     }
     
     .black-block {
-        flex: 1 45vw;
-    } 
+        grid-column: 1/3;
+    }
+    
+    .black-block + .black-block {
+        grid-column: 3/5;
+    }
     
     .white-block {
-        flex: 1 45vw;
+        grid-column: 1/3;
     }
 
-    .white-block:last-of-type {
-        flex: 1 98vw;
+    .white-block ~ .white-block {
+        grid-column: 3/5;
+    }
+
+    .white-block ~ .white-block + .white-block {
+        grid-column: 1/5;
     }
 }
 
 @media screen and (min-device-width: 801px) {
 
+    #main-container {
+        grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
+        grid-template-rows: repeat(3, 150px) 400px 150px;
+    }
+
     .blue-block {
+        grid-column: 1/2;
     }
     
     .yellow-block {
+        grid-column: 2/4;
     }
     
     .green-block {
     }
     
     .black-block {
+        grid-column: 1/3;
+    } 
+
+    .black-block ~ .black-block {
+        grid-column: 3/5 ;
     } 
     
     .white-block {
+        grid-column: 1/2;
     }
+
+    .white-block ~ .white-block {
+        grid-column: 2/4;
+    }
+
+    .white-block ~ .white-block + .white-block {
+        grid-column: 4/5;
+    }
+
 }
