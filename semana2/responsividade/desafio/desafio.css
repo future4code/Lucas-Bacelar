@@ -9,6 +9,11 @@ div {
     border: 1px solid black;
 }
 
+div > div {
+    display: grid;
+    place-items: center;
+}
+
 /* Blocos */
 
 #first-block {
