@@ -9,17 +9,11 @@ div {
     border: 1px solid black;
 }
 
-div > div {
-    height: 150px;
-    margin: 10px 10px 0 10px;
-}
-
 /* Blocos */
 
 #first-block {
-    margin: 0;
+    display: none;
     background-color: red;
-    width: 100%;
 }
 
 .blue-block {
@@ -47,10 +41,11 @@ div > div {
 /* Código */
 
 #main-container {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
     width: 100vw;
-    align-items: flex-start;
+
+    grid-template-columns: ;
+    grid-template-rows: ;
 }
 
 @media screen and (min-device-width: 200px) and (max-device-width: 420px) {
@@ -90,22 +85,17 @@ div > div {
 @media screen and (min-device-width: 801px) {
 
     .blue-block {
-        flex: 1 30vw;
     }
     
     .yellow-block {
-        flex: 1 30vw;
     }
     
     .green-block {
-        flex: 1 30vw;
     }
     
     .black-block {
-        flex: 1 46vw;
     } 
     
     .white-block {
-        flex: 1 30vw;
     }
 }
