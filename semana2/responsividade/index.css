@@ -53,14 +53,6 @@ div > div {
 }
 
 
-
-@media screen and (min-device-width: 200px) and (max-device-width: 420px) {
-    
-    div > div {
-        flex: 1 98vw;
-    }
-}
-
 @media screen and (min-device-width: 421px) and (max-device-width: 800px) {
 
     .blue-block {
