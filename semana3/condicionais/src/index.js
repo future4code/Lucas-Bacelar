@@ -95,4 +95,101 @@
 // *DESAFIOS --------------------------------------------------------------------------------------
 
 
+// Desafio 1 ---------------
+
+// let generoFilme, preçoIngresso
+
+// generoFilme = prompt("Qual o genero do filme?")
+// preçoIngresso = Number(prompt("Qual o valor do ingresso?"))
+
+// if(generoFilme === "fantasia" && preçoIngresso < 15 ) {
+//     let snack = prompt("Qual snack você quer comprar?")
+//     console.log("Bom filme!")
+//     console.log("... com", snack)
+// }
+
+// else {
+//     console.log("Escolha outro filme :(")
+// }
+
+
+// Desafio 2 ---------------
+
+// definir cotação pela qual valor vai ser dividido
+
+let nome, tipoJogo, etapaJogo, categoria, qntdIngresso
+let cotação, moeda
+let valorIngresso, valorTotal
+let tipoJogoNome, etapaJogoNome
+
+const semifinais = [1320, 880, 550, 220]
+const dt = [660, 440, 330, 170]
+const finais = [1980, 1320, 880, 330]
+
+nome = prompt("Qual seu nome completo?")
+tipoJogo = prompt("Qual o tipo de jogo que você deseja assitir, digite IN para internacional e DO para doméstico")
+etapaJogo = prompt("Qual a etapa de jogo?, digite SF para semi-final; DT para decisão de terceiro lugar e FI para final")
+categoria = Number(prompt("Digite a categoria?, as opçoes sao 1, 2, 3 ou 4"))
+qntdIngresso = Number(prompt("Qual a quantidade de ingressos?"))
+
+
+if( !(tipoJogo === "IN" || tipoJogo ===  "DO")) {
+    console.log("Tipo de jogo inválido")
+}
+
+else if( !(etapaJogo === "SF" || etapaJogo === "DT" ||  etapaJogo === "FI")){
+    console.log("Etapa de jogo inválida")
+}
+
+else if( !(categoria >= 1 && categoria <= 4)) {
+    console.log("Categoria inválida")
+}
+
+else if(qntdIngresso < 0) {
+    console.log("Quantidade de ingressos inválida")
+}
+
+else {
+    switch(tipoJogo) {
+        case "IN":
+            cotação = 4.10
+            moeda = "U$"
+            tipoJogoNome = "Internacional"
+            break
+        case "DO":
+            cotação = 1
+            moeda = "R$"
+            tipoJogoNome = "Nacional"
+            break
+    }
+    
+    switch(etapaJogo) {
+        case "SF":
+            etapaJogoNome = "semi-final"
+            valorIngresso = semifinais[categoria - 1] / cotação
+            break
+        case "DT":
+            etapaJogoNome = "decisão de terceiro lugar"
+            valorIngresso = dt[categoria - 1] / cotação
+            break
+        case "FI":
+            etapaJogoNome = "final"
+            valorIngresso = finais[categoria - 1] / cotação
+
+            break
+    }
+
+    console.log("---Dados da compra---")
+    console.log("Nome do Cliente:", nome)
+    console.log("Tipo do jogo:", tipoJogoNome)
+    console.log("Etapa do jogo:", etapaJogoNome)
+    console.log("Categoria:", categoria)
+    console.log("Quantidade de Ingressos: ", qntdIngresso)
+    console.log("---Valores---")
+    console.log("Valor do ingresso:", valorIngresso)
+    console.log("Valor total:", moeda, valorIngresso * qntdIngresso)
+}
+
+
+
 
