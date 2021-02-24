@@ -145,7 +145,7 @@ else if( !(categoria >= 1 && categoria <= 4)) {
     console.log("Categoria inválida")
 }
 
-else if(qntdIngresso < 0) {
+else if(qntdIngresso <= 0) {
     console.log("Quantidade de ingressos inválida")
 }
 
