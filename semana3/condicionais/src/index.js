@@ -23,6 +23,76 @@
 // um erro de variável não declarada.
 
 
+// ESCRITA ----------------------------------------------------
+
+
+// Exercicio 4 --------------
+
+// let idadeMotorista = Number(prompt("Olá, diga nos sua idade"))
+
+// if(idadeMotorista >= 18) {
+//     console.log("Você pode dirigir")
+// }
+// else {
+//     console.log("Você não pode dirigir")
+// }
+
+
+// Exercicio 5 --------------
+
+// let turnoIfElse = prompt("Digite a letra correspondente ao turno em que você estuda sendo: M(matutino), V(vespertino) e N(noturno)")
+
+// if(turnoIfElse === "M"){
+//     console.log("Bom dia")
+// }
+// else if(turnoIfElse === "V"){
+//     console.log("Boa tarde")
+// }
+// else if(turnoIfElse === "N"){
+//     console.log("Boa noite")
+// }
+// else {
+//     console.log("Letra invalida, por favor digite novamente")
+// }
+
+
+// Exercicio 6 ---------------
+
+// let turnoSwitch = prompt("Digite a letra correspondente ao turno em que você estuda sendo: M(matutino), V(vespertino) e N(noturno)")
+
+// switch(turnoSwitch) {
+
+//     case 'M':
+//         console.log("Bom dia")
+//         break
+//     case 'V':
+//         console.log("Boa tarde")
+//         break
+//     case 'N':
+//         console.log("Boa noite")
+//         break
+//     default:
+//         console.log("Letra invalida, por favor digite novamente")
+//         break
+// }
+
+
+// Exercicio 7 ---------------
+
+// let generoFilme, preçoIngresso
+
+// generoFilme = prompt("Qual o genero do filme?")
+// preçoIngresso = Number(prompt("Qual o valor do ingresso?"))
+
+// if(generoFilme === "fantasia" && preçoIngresso < 15 ) {
+//     console.log("Bom filme!")
+// }
+
+// else {
+//     console.log("Escolha outro filme :(")
+// }
+
+// *DESAFIOS --------------------------------------------------------------------------------------
 
 
 
