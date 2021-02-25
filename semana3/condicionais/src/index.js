@@ -175,7 +175,6 @@ else {
         case "FI":
             etapaJogoNome = "final"
             valorIngresso = finais[categoria - 1] / cotação
-
             break
     }
 
