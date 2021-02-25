@@ -31,10 +31,10 @@
 
 // Exercicio 3
 
-const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
-const novoArray = []
-let valorMaximo = array[0]
-let valorMinimo = array[0]
+// const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
+// const novoArray = []
+// let valorMaximo = array[0]
+// let valorMinimo = array[0]
 
 
 // a. Escreva um programa que:---------------------------------------------
@@ -79,14 +79,68 @@ let valorMinimo = array[0]
 
 // e. Escreva um programa que imprima no console o maior e o menor números contidos no array original
 
-for(let num of array){
-    if(num > valorMaximo){
-        valorMaximo = num;
-    }
+// for(let num of array){
+//     if(num > valorMaximo){
+//         valorMaximo = num;
+//     }
 
-    if(num < valorMinimo){
-        valorMinimo = num;
+//     if(num < valorMinimo){
+//         valorMinimo = num;
+//     }
+// }
+
+// console.log("O maior numero é ", valorMaximo, " e o menor é ", valorMinimo);
+
+// Desafio Escrita
+
+// Desafio 1
+
+// let resposta, chute
+// let contador = 0
+
+// console.log("Vamos jogar!");
+// resposta  = Number(prompt("Coloque o numero a ser advinhado"))
+
+// while(chute !== resposta) {
+//     chute = Number(prompt("Selecione um numero"))
+//     console.log("O numero chutado foi:", chute);
+//     contador++
+
+//     if(chute < resposta) {
+//         console.log("Errrrrrrrou, é maior")
+//     }
+//     else if (chute > resposta){
+//         console.log("Errrrrrrrou, é menor")
+//     }
+//     else {
+//         console.log("Acertou!!");
+//         console.log("O numero de tentativas foi: ", contador);
+//         break;
+//     }
+// }
+
+// Desafio 2 
+
+let resposta, chute
+let contador = 0
+
+console.log("Vamos jogar!");
+resposta  = Math.floor(Math.random() * 100) + 1
+
+while(chute !== resposta) {
+    chute = Number(prompt("Selecione um numero"))
+    console.log("O numero chutado foi:", chute);
+    contador++
+
+    if(chute < resposta) {
+        console.log("Errrrrrrrou, é maior")
+    }
+    else if (chute > resposta){
+        console.log("Errrrrrrrou, é menor")
+    }
+    else {
+        console.log("Acertou!!");
+        console.log("O numero de tentativas foi: ", contador);
+        break;
     }
 }
-
-console.log("O maior numero é ", valorMaximo, " e o menor é ", valorMinimo);
