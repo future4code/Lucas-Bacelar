@@ -120,4 +120,6 @@ else {
       `As cartas do computador são ${suasCartasPC} .\nA pontuação do computador é ${pontuaçãoPC}\n` +
       ganhador
       )
+
+   console.log("O jogo acabou");
 }
