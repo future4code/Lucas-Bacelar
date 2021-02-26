@@ -7,30 +7,113 @@ if(!confirmação) {
 }
 
 else {
+   // Quantidade de cartas de cada jogador
    let qtdCartas = 2;
+
+   // Inicialização de array vazio para adicionar as cartas
    let cartasPC = []
    let cartasUsuário = []
+
+   // Pontuação inicial dos jogadores
    let pontuaçãoPC = 0
    let pontuaçãoUsuário = 0
 
-   for(let i = 0; i < qtdCartas; i++){
-      cartasPC.push(comprarCarta())
-      cartasUsuário.push(comprarCarta())
+   // Booleano para checar se o jogador deseja comprar novas cartas
+   let comprarUsuário = true
+   let comprarPC = true
 
-      pontuaçãoPC += cartasPC[i].valor
-      pontuaçãoUsuário += cartasUsuário[i].valor
+   // String com cartas do usuário
+   let suasCartasUsuário = ""
+   let suasCartasPC = ""
+
+   // String com o ganhador
+   let ganhador
+
+
+   while(true){
+
+      // Loop que se repete de acordo com quantidade de cartas
+      for(let i = 0; i < qtdCartas; i++){
+         // Inserção das novas cartas no array
+         cartasPC.push(comprarCarta())
+         cartasUsuário.push(comprarCarta())
+
+         // Soma da pontuação de cada carta
+         pontuaçãoPC += cartasPC[i].valor
+         pontuaçãoUsuário += cartasUsuário[i].valor
+
+         // Cartas que o usuário tem em mãos
+         suasCartasUsuário += cartasUsuário[i].texto + " "
+         suasCartasPC += cartasPC[i].texto + " " 
+      }
+
+      if(cartasPC[0].valor === 11 && cartasPC[1].valor === 11){
+         continue
+      }
+
+      else if(cartasUsuário[0].valor === 11 && cartasUsuário[1].valor === 11){
+         continue
+      }
+
+      else {
+         break;
+      }
    }
 
-   console.log("Usuário - cartas:", cartasUsuário[0].texto, cartasUsuário[1].texto, "-", String(pontuaçãoUsuário));
-   console.log("Computador - cartas:", cartasPC[0].texto, cartasPC[1].texto, "-", String(pontuaçãoPC));
 
-   if(pontuaçãoPC > pontuaçãoUsuário) {
-      console.log("O computador ganhou!");
+   while(comprarUsuário) {
+      comprarUsuário = confirm(
+         `Suas cartas são ${suasCartasUsuário}. A carta revelada do computador é ${cartasPC[0].texto}.` +
+         "\n"+
+         "Deseja comprar mais uma carta?"
+      )
+      
+      if(comprarUsuário) {
+         let novaCarta = comprarCarta()
+         cartasUsuário.push(novaCarta)
+
+         pontuaçãoUsuário += novaCarta.valor
+
+         suasCartasUsuário += novaCarta.texto + " "
+      }
+
+      if(pontuaçãoUsuário > 21) {
+         comprarUsuário = false;
+         break;
+      }
    }
-   else if(pontuaçãoUsuário > pontuaçãoPC) {
-      console.log("O usuário ganhou!");
+
+   while(comprarPC) {
+      
+      if(comprarPC) {
+         let novaCartaPC = comprarCarta()
+         pontuaçãoPC += novaCartaPC.valor
+         suasCartasPC += novaCartaPC.texto + " "
+
+         cartasPC.push(novaCartaPC)
+      }
+
+      if(pontuaçãoPC >= pontuaçãoUsuário) {
+         comprarPC = false;
+         break;
+      }
+   }
+
+    // Checagem de quem ganhou ou se teve empate
+    if((pontuaçãoPC > pontuaçãoUsuário && pontuaçãoPC <= 21) || (pontuaçãoUsuário > 21 && pontuaçãoPC <= 21)){
+      ganhador = "O computador ganhou!"
+   }
+   else if((pontuaçãoUsuário > pontuaçãoPC && pontuaçãoUsuário <= 21) || (pontuaçãoPC > 21 && pontuaçãoUsuário <= 21)) {
+      ganhador = "O usuário ganhou!"
    }
    else {
-      console.log("Empate!");
+      ganhador = "Empate"
    }
+
+
+   alert(
+      `Suas cartas são  ${suasCartasUsuário}. Sua pontuação é ${pontuaçãoUsuário}.\n` + 
+      `As cartas do computador são ${suasCartasPC} .\nA pontuação do computador é ${pontuaçãoPC}\n` +
+      ganhador
+      )
 }
