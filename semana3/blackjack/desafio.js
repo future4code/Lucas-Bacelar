@@ -29,7 +29,6 @@ else {
    // String com o ganhador
    let ganhador
 
-
    while(true){
 
       // Loop que se repete de acordo com quantidade de cartas
@@ -47,6 +46,7 @@ else {
          suasCartasPC += cartasPC[i].texto + " " 
       }
 
+      // Checando se o PC ou o Usuário tem duas cartas de Ás
       if(cartasPC[0].valor === 11 && cartasPC[1].valor === 11){
          continue
       }
@@ -55,12 +55,13 @@ else {
          continue
       }
 
+      // Senão tiverem o jogo continua
       else {
          break;
       }
    }
 
-
+   // Compra de cartas do usuário
    while(comprarUsuário) {
       comprarUsuário = confirm(
          `Suas cartas são ${suasCartasUsuário}. A carta revelada do computador é ${cartasPC[0].texto}.` +
@@ -77,12 +78,14 @@ else {
          suasCartasUsuário += novaCarta.texto + " "
       }
 
+      // Verificando se a pontuação ultrapassou 21
       if(pontuaçãoUsuário > 21) {
          comprarUsuário = false;
          break;
       }
    }
 
+   // Compra de cartas do computador
    while(comprarPC) {
       
       if(comprarPC) {
@@ -93,14 +96,15 @@ else {
          cartasPC.push(novaCartaPC)
       }
 
+      // Verificando se a pontuação do pc é igual ou superior ao do usuário
       if(pontuaçãoPC >= pontuaçãoUsuário) {
          comprarPC = false;
          break;
       }
    }
 
-    // Checagem de quem ganhou ou se teve empate
-    if((pontuaçãoPC > pontuaçãoUsuário && pontuaçãoPC <= 21) || (pontuaçãoUsuário > 21 && pontuaçãoPC <= 21)){
+   // Checagem de quem ganhou ou se teve empate
+   if((pontuaçãoPC > pontuaçãoUsuário && pontuaçãoPC <= 21) || (pontuaçãoUsuário > 21 && pontuaçãoPC <= 21)){
       ganhador = "O computador ganhou!"
    }
    else if((pontuaçãoUsuário > pontuaçãoPC && pontuaçãoUsuário <= 21) || (pontuaçãoPC > 21 && pontuaçãoUsuário <= 21)) {
@@ -110,7 +114,7 @@ else {
       ganhador = "Empate"
    }
 
-
+   // Mensagem da pontuação e do ganhador
    alert(
       `Suas cartas são  ${suasCartasUsuário}. Sua pontuação é ${pontuaçãoUsuário}.\n` + 
       `As cartas do computador são ${suasCartasPC} .\nA pontuação do computador é ${pontuaçãoPC}\n` +
