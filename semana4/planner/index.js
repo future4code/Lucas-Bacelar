@@ -7,6 +7,6 @@ button.onclick = function () {
     const day = weekDay.value
 
     const taskDay = document.getElementById(day)
-    taskDay.innerHTML += task
+    taskDay.innerHTML += `<p>- ${task}</p>`
     input.value = " "
 }
