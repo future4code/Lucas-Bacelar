@@ -23,6 +23,16 @@ section {
     padding: 5px;
 }
 
-#limpar-tarefas {
+.semana > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.semana > div * {
+    flex: 1;
+}
+
+#limpar-tarefa {
     margin-left: 10px;
 }
