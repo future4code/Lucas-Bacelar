@@ -51,7 +51,27 @@ button {
     grid-column: 2/3;
     margin: 10px 0;
     background: linear-gradient(to bottom right, lightblue, cyan);
-    height: 200px;
+    min-height: 500px;
     border-radius: 20px;
     text-align: center;
+    padding: 20px 40px;
+}
+
+.post-div h2 {
+    margin-bottom: 12px;
+    font-size: 32px;
+}
+
+.post-div p{
+    margin: 4px 0;
+}
+
+.img-container {
+    height: 350px;
+}
+
+.img-container > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }

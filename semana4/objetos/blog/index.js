@@ -30,7 +30,7 @@ function atualizarBlog () {
                             <p><span>Titulo: </span>${postTemp.titulo}</p> 
                             <p><span>Autor: </span>${postTemp.autor}</p>
                             <h4> Conteudo </h4> 
-                            <img src='${postTemp.imagem}' alt='imagem do post${postTemp.numero}'> 
+                            <div class="img-container" ><img src='${postTemp.imagem}' alt='imagem do post${postTemp.numero}'></div>
                             <p>${postTemp.conteudo}</p>`
         }
         else {
@@ -76,6 +76,7 @@ criar.onclick = function () {
         titulo.value = ""
         autor.value = ""
         conteudo.value = ""
+        imagem.value = ""
         atualizarBlog()
     }
 
