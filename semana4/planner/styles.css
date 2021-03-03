@@ -4,11 +4,54 @@
     box-sizing: border-box;
 }
 
+body {
+    background: linear-gradient(to right bottom,lightgreen, rgba(172, 241, 172, 0.76));
+}
+
 header {
     height: 10vh;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to right bottom,lightgreen, rgba(69, 211, 69, 0.76));
+    box-shadow: gray -10px 1px 5px;
+}
+
+header > * {
+    margin: 10px;
+}
+
+.formulario {
+    max-width: 700px;
+}
+
+.formulario label{
+    font-size: 25px;
+    color: rgba(28, 95, 28, 0.76);
+    font-weight: bold;
+}
+
+.formulario #tarefa {
+    max-width: 300px;
+    height: 30px;
+}
+
+.formulario select {
+    height: 30px;
+}
+
+.formulario select:nth-of-type(2){
+    max-width: 80px;
+}
+
+.button-container button {
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+#limpar-tarefa {
+    margin-left: 10px;
 }
 
 section {
@@ -23,16 +66,50 @@ section {
     padding: 5px;
 }
 
+.semana h3 {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgb(71, 219, 71);
+    border-radius: 5px;
+    text-align: center;
+}
+
 .semana > div {
     display: flex;
+    height: 95%;
     flex-direction: column;
-    height: 100%;
 }
 
-.semana > div * {
-    flex: 1;
+.item-lista {
+    min-height: 55px;
+    margin: 5px 0;
+    border: 1px solid black;
+    background-color: rgb(86, 228, 145);
+    word-wrap:break-word;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    opacity: 0.8;
+    transition: 0.5s;
 }
 
-#limpar-tarefa {
-    margin-left: 10px;
+.item-lista:hover {
+    transform: scale(1.04);
+    opacity: 1;
+    font-weight: bold;
+}
+
+.item-lista::before {
+    content: attr(data-hour)"h";
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: rgb(70, 70, 70);
+    font-size: 18px;
+    font-weight: bold;
 }

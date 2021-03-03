@@ -14,21 +14,27 @@ const section = document.querySelector("section")
 // Divs contendo as tarefas
 const semanaConteudo = document.querySelectorAll(".semana > div")
 
+const formEntrada = document.querySelector(".formulario")
 
-// Criar uma tarefa
-criar.onclick = function () {
-    if(input.value === "" || input.value === " ") {
-        alert("A tarefa está em branco")
-    }
+// Inserção do formulário da entrada da hora 
 
-    else {
-        const task = input.value
-        const day = weekDay.value
-        const taskDay = document.getElementById(day)
-        taskDay.innerHTML += `<p class="item-lista">- ${task}</p>`
-        input.value = " "
-    }
+let selectHour = document.createElement("SELECT")
+selectHour.setAttribute("name", "horas")
+selectHour.setAttribute("id", "horas")
+
+for(let i = 1; i < 24; i++) {
+    let hour = document.createElement("option")
+    hour.setAttribute("value", i)
+    let hourText = document.createTextNode(`${i}h`)
+    hour.appendChild(hourText)
+    selectHour.appendChild(hour)
 }
+
+formEntrada.appendChild(selectHour)
+
+// Seleção do formulário de horas
+
+const hourDay = document.getElementById("horas")
 
 // Limpar todas as tarefas
 limpar.onclick = function () {
@@ -53,10 +59,30 @@ section.onclick = function (e) {
     }
 }
 
-// Criar horas nas semanas
-for(int i = 1; i <= 24; i++) {
-    
+
+// Criar uma tarefa
+criar.onclick = function () {
+    if(input.value === "" || input.value === " ") {
+        alert("A tarefa está em branco")
+    }
+
+    else {
+        const task = input.value
+        const day = weekDay.value
+        const hour = hourDay.value
+
+        const taskDay = document.getElementById(day)
+        taskDay.innerHTML += `<p class="item-lista" data-hour="${hour}"> ${task}</p>`
+        input.value = " "
+    }
 }
+
+
+
+
+
+
+
 
 
 
