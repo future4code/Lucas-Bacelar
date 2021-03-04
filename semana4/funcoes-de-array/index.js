@@ -2,12 +2,32 @@ let arrDespesas = []
 imprimirDespesas(arrDespesas)
 imprimirExtrato()
 
+// Funçoes para ordenar a lista de despesas
+
+// Descendente
+function sortDesc() {
+    arrDespesas.sort( (a, b) => {
+        return b.valor - a.valor
+    })
+    imprimirDespesas(arrDespesas)
+}
+
+// Ascendente 
+function sortAsc() {
+    arrDespesas.sort( (a, b) => {
+        return a.valor - b.valor
+    })
+    imprimirDespesas(arrDespesas)
+}
+
 
 // PRIMEIRO
 function imprimirDespesas(despesas){
     let divDespesas = document.getElementById('despesas')
-    divDespesas.innerHTML = '<p><u>Despesas Detalhadas</u></p>'
+    divDespesas.innerHTML = `<p><u>Despesas Detalhadas</u> <button onclick="sortDesc()" >Desc</button> 
+                            <button onclick="sortAsc()" >Asc</button> <p>`
 
+    // Utilização do forEach para ler cada despesa seu tipo, valor e descrição e adicionar no campo de despesas
     despesas.forEach((despesa) => {
         divDespesas.innerHTML += `<p>valor: ${despesa.valor} | tipo: ${despesa.tipo} | descrição: ${despesa.descricao}<p>`
     })
@@ -23,6 +43,7 @@ function imprimirExtrato(){
     let gastoUtilidades = 0
     let gastoViagem = 0
 
+    // Metodo forEach sendo usado para ler cada tipo de despesa e somar seu valor ao seu devido campo
     arrDespesas.forEach((despesa) => {
         switch(despesa.tipo){
             case 'alimentação':
@@ -37,12 +58,14 @@ function imprimirExtrato(){
             default:
                 break
         }
-        gastoTotal += despesa.valor
     })
 
-
-    // AQUI VEM A IMPLEMENTAÇÃO
-
+    // Metodo reduce sendo usado para a soma do valor atual
+    gastoTotal = arrDespesas.reduce((acumulador, valorAtual) => {
+        console.log(valorAtual.valor);
+        return acumulador + valorAtual.valor
+    }, 0)
+    
     divExtrato.innerHTML = `<p>Extrato: Gasto Total: R$${gastoTotal} | Alimentação: R$${gastoAlimentacao} |
                                         Utilidades: R$${gastoUtilidades} | Viagem: R$${gastoViagem}</p>`
 }
@@ -91,6 +114,7 @@ function filtrarDespesas(){
     let valorMin = Number(document.getElementById('valorFiltroMin').value)
     let valorMax = Number(document.getElementById('valorFiltroMax').value)
 
+    // Função criada para checar se valor é positivo ou não
     let checkValor = (valor) => {
         if(valor > 0){
             return true
@@ -98,6 +122,7 @@ function filtrarDespesas(){
         return false
     }
 
+    // Check para ver se os dados colocados nos filtros são válidos
     if(tipoFiltro !== '' && (checkValor(valorMin) && checkValor(valorMax)) && valorMin <= valorMax){
         let despesasFiltradas = arrDespesas.filter((despesa) => {
             if( (despesa.tipo === tipoFiltro || tipoFiltro === 'todos') && (despesa.valor >= valorMin && despesa.valor <= valorMax)){
