@@ -62,3 +62,29 @@ function retornaMaiorNumero(array) {
 
   return maiorNumero;
 }
+
+//Exercício 5
+
+function retornaQuantidadeElementos(array) {
+  // Variável para contagem
+  // let quantidade = 0
+
+  // Solução com forEach
+
+  // array.forEach((item) => {
+  //    quantidade++
+  // })
+
+  // Solução com loop while
+
+  // while(array[quantidade] !== undefined)
+  // {
+  //    quantidade++
+  // }
+
+  // return quantidade
+
+  // Solução com função nativa
+
+  return array.length;
+}
