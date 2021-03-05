@@ -48,3 +48,17 @@ function retornaNumerosPares(array) {
     return item % 2 === 0;
   });
 }
+
+//Exercício 4
+
+function retornaMaiorNumero(array) {
+  let maiorNumero = array[0];
+
+  array.forEach((item) => {
+    if (item > maiorNumero) {
+      maiorNumero = item;
+    }
+  });
+
+  return maiorNumero;
+}
