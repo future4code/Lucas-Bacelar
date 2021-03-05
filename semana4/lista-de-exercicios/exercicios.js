@@ -41,3 +41,10 @@ function retornaNumerosParesElevadosADois(array) {
   });
 }
 
+//Exercício 3
+
+function retornaNumerosPares(array) {
+  return array.filter((item) => {
+    return item % 2 === 0;
+  });
+}
