@@ -1,9 +1,17 @@
 import React from 'react'
-import './IconeComContador.css'
+import styled from 'styled-components'
+
+const IconContainer = styled.div`
+	display: flex;
+`
+
+const ImgIcon = styled.img`
+	margin-right: 5px;
+`
 
 export function IconeComContador(props) {
-	return <div className={'icon-container'}>
-		<img alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
+	return <IconContainer>
+		<ImgIcon alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
 		<p>{props.valorContador}</p>
-	</div>
+	</IconContainer>
 }
