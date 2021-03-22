@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Rock Alternativo\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Neo Soul\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,7 +81,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"The list\", \r\n    \"artist\": \"Moonchild\",\r\n    \"url\": \"https://www.youtube.com/watch?v=Qlnwx01fsKA\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Where do you go\", \r\n    \"artist\": \"Yebba\",\r\n    \"url\": \"https://www.youtube.com/watch?v=hZw4iJpHkS0\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,7 +105,7 @@
 					"variable": [
 						{
 							"key": "playlistId",
-							"value": "0ed0d269-c3ce-48b2-b37f-a93bf2ab24b8"
+							"value": "7d7115d7-1d2a-408b-847d-513fdc991544"
 						}
 					]
 				}
@@ -140,7 +140,7 @@
 					"variable": [
 						{
 							"key": "playlistId",
-							"value": "0ed0d269-c3ce-48b2-b37f-a93bf2ab24b8"
+							"value": "9cd7069b-e8af-4427-bf6f-bc278fac7232"
 						}
 					]
 				}
@@ -159,7 +159,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Neo Soul",
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Rock Alternativo",
 					"protocol": "https",
 					"host": [
 						"us-central1-labenu-apis",
@@ -174,7 +174,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "Neo Soul"
+							"value": "Rock Alternativo"
 						}
 					]
 				}
@@ -185,7 +185,13 @@
 			"name": "deletarFaixaPlaylist",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "lucas-bacelar-cruz",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId\n",
 					"protocol": "https",
@@ -204,11 +210,11 @@
 					"variable": [
 						{
 							"key": "playlistId",
-							"value": ""
+							"value": "3c28fb3e-2d21-4b0c-815b-da6dfcb24d37"
 						},
 						{
 							"key": "trackId\n",
-							"value": ""
+							"value": "68ce94ac-32c1-49bb-be49-b2286c29fa06"
 						}
 					]
 				}
@@ -219,7 +225,13 @@
 			"name": "deletarPlaylist",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "lucas-bacelar-cruz",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
 					"protocol": "https",
@@ -236,7 +248,7 @@
 					"variable": [
 						{
 							"key": "playlistId",
-							"value": ""
+							"value": "8918a98f-f712-4a43-9fc2-6728f8c41082"
 						}
 					]
 				}
