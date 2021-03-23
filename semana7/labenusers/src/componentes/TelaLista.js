@@ -1,7 +1,8 @@
 import axios from "axios";
 import react from "react";
 import styled from "styled-components";
-import UserField from "./UserField";
+import RegistroUsuario from "./registroUsuario";
+import InputField from "./InputField"
 import { Fragment } from "react";
 
 const RegistrosDiv = styled.div`
@@ -26,6 +27,7 @@ export default class InputForm extends react.Component {
   state = {
     listaRegistros: [],
     error: false,
+    valorBusca: '',
   };
 
   componentDidMount() {
@@ -58,9 +60,26 @@ export default class InputForm extends react.Component {
     this.setState({listaRegistros: listaNova})
   }
 
+  procurarUsuario = () => {
+    const nome = this.state.valorBusca;
+    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${nome}`, {
+      headers: {
+        Authorization: 'lucas-bacelar-cruz'
+      }
+    }).then((response) => {
+      this.setState({listaRegistros: response.data})
+    }).catch((error) => {
+      console.log("Ocorreu um erro ao buscar");
+    })
+  }
+  
+  onChangeBusca = (event) => {
+    this.setState({valorBusca: event.target.value})
+  }
+
   render() {
     const usuariosDaLista = this.state.listaRegistros.map((usuario) => {
-      return <UserField 
+      return <RegistroUsuario 
       id ={usuario.id} 
       nomeUsuario = {usuario.name} 
       atualizar = {this.atualizarLista}
@@ -79,6 +98,12 @@ export default class InputForm extends react.Component {
     return (
       <Fragment>
         <RegistrosDiv>
+          <InputField 
+            nome="Busca"
+            valor={this.state.valorBusca}
+            onchange={this.onChangeBusca}
+          />
+          <button onClick={this.procurarUsuario}>Buscar</button>
           <h2>Usuários Cadastrados</h2>
           {mensagem}
         </RegistrosDiv>

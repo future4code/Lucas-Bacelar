@@ -9,6 +9,7 @@ const UsuarioDiv = styled.div`
   padding-bottom: 8px;
   border-bottom: 1px solid black;
   align-items: flex-end;
+  cursor: pointer;
 
   width: 100%;
 

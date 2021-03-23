@@ -26,7 +26,7 @@ const PageContainer = styled.div`
 
 export default class App extends react.Component {
   state = {
-    paginaAtual: "usuario",
+    paginaAtual: "registro",
     idUsuario: "",
   };
 
@@ -48,9 +48,9 @@ export default class App extends react.Component {
       case "registro":
         return <TelaRegistro />;
       case "lista":
-        return <TelaLista mostrarUsuario={this.mostrarUsuario} />;
+        return <TelaLista mostrarUsuario={this.mostrarUsuario}/>;
       case "usuario":
-        return <TelaUsuario id={this.state.idUsuario} />;
+        return <TelaUsuario id={this.state.idUsuario} voltar={this.voltarPraLista}/>;
       default:
         break;
     }
@@ -61,6 +61,10 @@ export default class App extends react.Component {
       this.setState({ paginaAtual: "usuario" });
     });
   };
+
+  voltarPraLista = () => {
+    this.setState({ paginaAtual: 'lista'})
+  }
 
   render() {
     return (
