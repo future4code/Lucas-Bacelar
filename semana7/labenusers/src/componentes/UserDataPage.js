@@ -152,13 +152,19 @@ export default class TelaUsuario extends react.Component {
     }
   };
 
+  deleteAux = async (event) => {
+    if(await this.props.deletar(this.props.id, event)) {
+      this.setState({name: '', email: ''})
+    }
+  }
+
   render() {
     return (
       <TelaUsuarioDiv>
         <h1>Detalhes Usuario</h1>
         {this.changeContent()}
         <DivBotoes>
-          <button onClick={(event) => this.props.deletar(this.props.id, event)}>
+          <button onClick={this.deleteAux}>
             Deletar
           </button>
           <button onClick={this.props.voltar}>Voltar</button>

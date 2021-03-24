@@ -36,11 +36,18 @@ const UsuarioDiv = styled.div`
 `;
 
 export default class InputForm extends react.Component {
+  deleteAux = async (event) => {
+    if(await this.props.deletar(this.props.id, event)){
+      this.props.atualizar()
+    }
+  }
+
+
   render() {
     return (
       <UsuarioDiv onClick={() => this.props.mostrarUsuario(this.props.id)}>
         <p>{this.props.nomeUsuario}</p>
-        <button onClick={(event) => this.props.deletar(this.props.id, event)}>
+        <button onClick={this.deleteAux}>
           X
         </button>
       </UsuarioDiv>

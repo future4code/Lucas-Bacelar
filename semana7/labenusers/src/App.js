@@ -59,9 +59,10 @@ export default class App extends react.Component {
       try {
         await axios.delete(`${baseURL}/${id}`, config);
         alert("Deletado com sucesso!");
-        this.props.atualizar();
+        return true;
       } catch (error) {
         alert("Ocorreu um erro ao deletar o usuário");
+        return false;
       }
     }
   };
