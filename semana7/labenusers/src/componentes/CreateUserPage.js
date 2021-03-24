@@ -5,70 +5,89 @@ import {baseURL, config} from "../utils/configs"
 import InputField from "./InputField";
 
 const FormDiv = styled.div`
-  margin: 10px auto;
-  padding: 20px 20px;
+  margin: 50px auto;
+  padding: 30px 40px;
   width: 350px;
-  height: 200px;
+  min-height: 200px;
   border: 1px solid black;
+  background-color: #FDFDFD;
+  border-radius: 2%;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  & > h1 {
+    text-align: center;
+  }
 
   & > button {
-    padding: 5px 10px;
+    margin-top : 10px;
+    font-weight: bold;
+    padding: 8px 10px;
+    background-color: #017AFF;
+    color: #FDFDFD;
+    border: none;
+    box-shadow: 0 0 1px #017AFF;
+    border-radius: 12px;
   }
 
   & > *:not(:last-child) {
     margin-bottom: 15px;
   }
+
+  & input {
+    box-shadow: 0px 0px 1px gray;
+    background-color: #F2F2F2;
+    height: 35px;
+    border: none;
+    font-size: 1.25rem;
+    padding: 0 10px;
+  }
 `;
 
 export default class InputForm extends react.Component {
   state = {
-    nome: '',
+    name: '',
     email: '',
   }
 
-  registrarUsuario = async () => {
+  createUser = async () => {
     const body = {
-      name: this.state.nome,
+      name: this.state.name,
       email: this.state.email,
     }
     try {
       await axios.post(baseURL , body, config);
       alert("Usuário cadastrado com sucesso!");
-      this.setState({
-        nome: '',
-        email: '',
-      })
+      this.setState({name: '', email: ''})
     } catch(error) {
       alert("Ocorreu um erro e não foi possivel fazer o cadastro :(");
     }
   }
 
-  onChangeNome = (event) => {
-    this.setState({ nome: event.target.value})
+  handleName = (event) => {
+    this.setState({ name: event.target.value})
   
   }
-  onChangeEmail = (event) => {
+  handleEmail = (event) => {
     this.setState({ email: event.target.value})
   }
 
   render() {
     return (
       <FormDiv>
+        <h1>Criar</h1>
         <InputField 
-          nome="Nome:"
-          onchange={this.onChangeNome}
-          valor={this.state.nome}
+          name="Nome:"
+          onchange={this.handleName}
+          value={this.state.name}
         />
         <InputField
-          nome="Email:"
-          onchange={this.onChangeEmail}
-          valor={this.state.email}
+          name="Email:"
+          onchange={this.handleEmail}
+          value={this.state.email}
         />
-        <button onClick={this.registrarUsuario}>Salvar</button>
+        <button onClick={this.createUser}>Salvar</button>
       </FormDiv>
     );
   }

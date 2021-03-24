@@ -1,21 +1,27 @@
 import react, { Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { baseURL, config } from "../utils/configs";
 import InputField from "./InputField";
 
 const TelaUsuarioDiv = styled.div`
-  margin: 0 auto;
+  margin: 50px auto;
+  padding: 10px;
   width: 500px;
-  height: 300px;
+  min-height: 300px;
+  border-radius: 12px;
 
   display: flex;
   flex-direction: column;
-  background: lightgrey;
+  background-color:#F2F2F2;
 
   & > h1 {
     text-align: center;
-    background-color: grey;
     margin-bottom: 40px;
+  }
+
+  & > p {
+    font-size: 20px;
   }
 
   & > * {
@@ -30,6 +36,20 @@ const TelaUsuarioDiv = styled.div`
     padding: 5px;
     margin: 0 10px;
   }
+
+  & > div {
+    margin-bottom: 20px;
+
+    & > input {
+    width: 50%;
+    height: 30px;
+    }
+
+    & > label {
+      font-weight: bold;
+    }
+
+  }
 `;
 
 const DivBotoes = styled.div`
@@ -40,64 +60,37 @@ const DivBotoes = styled.div`
 
 export default class TelaUsuario extends react.Component {
   state = {
-    nome: "",
+    name: "",
     email: "",
-    novoNome: "",
-    novoEmail: "",
-    editando: false,
+    newName: "",
+    newEmail: "",
+    edit: false,
   };
 
   componentDidMount() {
-    const id = this.props.id;
-    axios
-      .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
-        {
-          headers: {
-            Authorization: "lucas-bacelar-cruz",
-          },
-        }
-      )
-      .then((response) => {
-        const usuario = response.data;
-        this.setState({
-          nome: usuario.name,
-          email: usuario.email,
-        });
-      })
-      .catch((error) => {
-        console.log("Ocorreu um erro");
-      });
+    this.getUserData();
   }
 
-  deletarUsuario = (id, event) => {
-    event.stopPropagation();
-    if (window.confirm("Tem certeza que deseja deletar?")) {
-      axios
-        .delete(
-          `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
-          {
-            headers: {
-              Authorization: "lucas-bacelar-cruz",
-            },
-          }
-        )
-        .then((response) => {
-          alert("Deletado com sucesso!");
-          this.props.atualizar(id);
-        })
-        .catch((error) => {
-          alert("Ocorreu um erro ao deletar o usuário");
-        });
+  getUserData = async () => {
+    const id = this.props.id;
+    try {
+      const request = await axios.get(`${baseURL}/${id}`, config);
+      const usuario = request.data;
+      this.setState({
+        name: usuario.name,
+        email: usuario.email,
+      });
+    } catch (error) {
+      console.log("Ocorreu um erro");
     }
   };
 
-  mudarConteudo = () => {
-    if (!this.state.editando) {
+  changeContent = () => {
+    if (!this.state.edit) {
       return (
         <Fragment>
           <p>
-            <span>Nome:</span> {this.state.nome}
+            <span>Name:</span> {this.state.name}
           </p>
           <p>
             <span>Email:</span> {this.state.email}
@@ -108,58 +101,54 @@ export default class TelaUsuario extends react.Component {
       return (
         <Fragment>
           <InputField
-            nome="Nome"
-            valor={this.state.novoNome}
-            onchange={this.onChangeNome}
+            name="Name"
+            value={this.state.newName}
+            onchange={this.handleName}
           />
           <InputField
-            nome="Email"
-            valor={this.state.novoEmail}
-            onchange={this.onChangeEmail}
+            name="Email"
+            value={this.state.newEmail}
+            onchange={this.handleEmail}
           />
         </Fragment>
       );
     }
   };
 
-  onChangeNome = (event) => {
-    this.setState({ novoNome: event.target.value });
+  handleName = (event) => {
+    this.setState({ newName: event.target.value });
   };
 
-  onChangeEmail = (event) => {
-    this.setState({ novoEmail: event.target.value });
+  handleEmail = (event) => {
+    this.setState({ newEmail: event.target.value });
   };
 
-  enviarEdicao = () => {
-        const body = {
-            name: this.state.novoNome,
-            email: this.state.novoEmail,
-        }
+  editUser = async () => {
+    const body = {
+      name: this.state.newName,
+      email: this.state.newEmail,
+    };
+    const id = this.props.id;
 
-      const id = this.props.id;
-      axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, body, {
-          headers: {
-              Authorization: 'lucas-bacelar-cruz'
-          }
-      }).then((response) => {
-        alert("O usuario foi editado com sucesso");
-        this.setState({
-            nome: this.state.novoNome,
-            email: this.state.novoEmail,
-        })
-      }).catch((error) => {
-        alert("Ocorreu um erro ao editar o usuario");
-      })
-  }
-
-  editarDados = () => {
-    if (this.state.editando) {
-      this.enviarEdicao();
+    try {
+      await axios.put(`${baseURL}/${id}`, body, config);
+      alert("O usuario foi editado com sucesso");
+      this.getUserData();
       this.setState({
-        editando: false,
+        newName: '',
+        newEmail: '',
       });
+    } catch (error) {
+      alert("Ocorreu um erro ao editar o usuario");
+    }
+  };
+
+  handleEdit = () => {
+    if (this.state.edit) {
+      this.editUser();
+      this.setState({ edit: false });
     } else {
-      this.setState({ editando: true });
+      this.setState({ edit: true });
     }
   };
 
@@ -167,16 +156,14 @@ export default class TelaUsuario extends react.Component {
     return (
       <TelaUsuarioDiv>
         <h1>Detalhes Usuario</h1>
-        {this.mudarConteudo()}
+        {this.changeContent()}
         <DivBotoes>
-          <button
-            onClick={(event) => this.deletarUsuario(this.props.id, event)}
-          >
+          <button onClick={(event) => this.props.deletar(this.props.id, event)}>
             Deletar
           </button>
           <button onClick={this.props.voltar}>Voltar</button>
-          <button onClick={this.editarDados}>
-            {this.state.editando ? "Salvar" : "Editar"}
+          <button onClick={this.handleEdit}>
+            {this.state.edit ? "Salvar" : "Editar"}
           </button>
         </DivBotoes>
       </TelaUsuarioDiv>

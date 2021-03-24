@@ -1,7 +1,9 @@
 import react from "react";
+import axios from "axios";
+import { baseURL, config } from "./utils/configs";
 import styled, { createGlobalStyle } from "styled-components";
 import CreateUserPage from "./componentes/CreateUserPage";
-import UserListPage from "./componentes/UserListPage";
+import ShowUsersPage from "./componentes/ShowUsersPage";
 import UserDataPage from "./componentes/UserDataPage";
 
 const GlobalStyle = createGlobalStyle`
@@ -22,6 +24,14 @@ const PageContainer = styled.div`
   position: relative;
   min-height: 100vh;
   max-height: 100vh;
+  overflow: auto;
+
+  background: linear-gradient(to bottom right, #4E8AE6, #4C88E8);
+
+  & > button {
+    margin: 10px;
+    padding: 2px 10px;
+  }
 `;
 
 export default class App extends react.Component {
@@ -43,14 +53,27 @@ export default class App extends react.Component {
     }
   };
 
+  deleteUser = async (id, event) => {
+    event.stopPropagation();
+    if (window.confirm("Tem certeza que deseja deletar?")) {
+      try {
+        await axios.delete(`${baseURL}/${id}`, config);
+        alert("Deletado com sucesso!");
+        this.props.atualizar();
+      } catch (error) {
+        alert("Ocorreu um erro ao deletar o usuário");
+      }
+    }
+  };
+
   paginaAtual = () => {
     switch (this.state.paginaAtual) {
       case "registro":
         return <CreateUserPage />;
       case "lista":
-        return <UserListPage mostrarUsuario={this.mostrarUsuario}/>;
+        return <ShowUsersPage mostrarUsuario={this.mostrarUsuario} deletar={this.deleteUser}/>;
       case "usuario":
-        return <UserDataPage id={this.state.idUsuario} voltar={this.voltarPraLista}/>;
+        return <UserDataPage id={this.state.idUsuario} voltar={this.voltarPraLista} deletar={this.deleteUser}/>;
       default:
         break;
     }
