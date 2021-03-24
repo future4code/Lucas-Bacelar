@@ -1,6 +1,7 @@
 import axios from "axios";
 import react from "react";
 import styled from "styled-components";
+import {baseURL, config} from "../utils/configs"
 import InputField from "./InputField";
 
 const FormDiv = styled.div`
@@ -29,28 +30,21 @@ export default class InputForm extends react.Component {
     email: '',
   }
 
-  registrarUsuario = () => {
+  registrarUsuario = async () => {
     const body = {
       name: this.state.nome,
       email: this.state.email,
     }
-
-    const request = axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users' , body,{
-      headers: {
-        'Authorization': 'lucas-bacelar-cruz'
-      }
-    })
-
-    request.then((response) => {
+    try {
+      await axios.post(baseURL , body, config);
       alert("Usuário cadastrado com sucesso!");
-    }).catch((error) => {
+      this.setState({
+        nome: '',
+        email: '',
+      })
+    } catch(error) {
       alert("Ocorreu um erro e não foi possivel fazer o cadastro :(");
-    })
-
-    this.setState({
-      nome: '',
-      email: '',
-    })
+    }
   }
 
   onChangeNome = (event) => {

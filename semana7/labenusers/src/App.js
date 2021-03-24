@@ -1,8 +1,8 @@
 import react from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import TelaRegistro from "./componentes/TelaRegistro";
-import TelaLista from "./componentes/TelaLista";
-import TelaUsuario from "./componentes/TelaUsuario";
+import CreateUserPage from "./componentes/CreateUserPage";
+import UserListPage from "./componentes/UserListPage";
+import UserDataPage from "./componentes/UserDataPage";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -46,11 +46,11 @@ export default class App extends react.Component {
   paginaAtual = () => {
     switch (this.state.paginaAtual) {
       case "registro":
-        return <TelaRegistro />;
+        return <CreateUserPage />;
       case "lista":
-        return <TelaLista mostrarUsuario={this.mostrarUsuario}/>;
+        return <UserListPage mostrarUsuario={this.mostrarUsuario}/>;
       case "usuario":
-        return <TelaUsuario id={this.state.idUsuario} voltar={this.voltarPraLista}/>;
+        return <UserDataPage id={this.state.idUsuario} voltar={this.voltarPraLista}/>;
       default:
         break;
     }
