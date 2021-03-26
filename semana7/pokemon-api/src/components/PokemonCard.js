@@ -40,6 +40,7 @@ const CardDiv = styled.article`
   flex-direction: column;
   box-shadow: 0px 0px 3px gray;
   position: relative;
+  background: rgba(255, 255, 255, 0.6);
 
   &::before {
     content: "${(props) => `#${props.pokeId}` || ""}";
@@ -55,7 +56,7 @@ const CardDiv = styled.article`
   }
 
   & > img {
-    background: #f2f2f2;
+    background: #c3c3a2;
     height: 250px;
     position: relative;
   }
