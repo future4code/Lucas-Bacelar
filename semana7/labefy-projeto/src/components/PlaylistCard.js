@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {randomRGBA} from "../utils/randomColor"
 
 const CardContainer = styled.article`
     display: flex;
@@ -26,13 +27,17 @@ const CardContainer = styled.article`
 `
 
 export default class PlaylistCard extends React.Component {
-    random_rgba = () => {
-        let o = Math.round, r = Math.random, s = 255;
-        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    state = {
+        color: ''
     }
+
+    componentDidMount() {
+        this.setState({color: randomRGBA()})
+    }
+
     render() {
         return (
-            <CardContainer onClick={() => this.props.fetchDetail(this.props.id, this.props.name)} color={this.random_rgba()}>
+            <CardContainer onClick={() => this.props.fetchDetail(this.props.id, this.props.name)} color={this.state.color}>
                 <div>{this.props.index}</div>
                 <p>{this.props.name}</p>
             </CardContainer>

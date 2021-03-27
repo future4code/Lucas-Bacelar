@@ -3,10 +3,12 @@ import styled from "styled-components";
 import TrackCard from "../components/TrackCard";
 import axios from "axios";
 import { baseURL, config } from "../utils/config";
+import ReactAudioPlayer from "react-audio-element";
 
 const PlaylistContainer = styled.article`
   display: grid;
   grid-template-rows: auto 50px auto 1fr;
+  position: relative;
 
   & > h1 {
     text-transform: capitalize;
@@ -34,16 +36,35 @@ const PlaylistTracksDiv = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 300px);
-  grid-auto-rows: 350px;
+  grid-auto-rows: minmax(350px, auto);
   grid-gap: 30px;
 `;
 
+const AudioPlayerContainer = styled.div`
+  position: sticky;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.4);
+  height: 130px;
+  left: 0;
+  bottom: 0;
+
+  & > * {
+    margin-top: -30px;
+    transform: scale(0.7);
+  }
+`;
+
 export default class PlaylistDetail extends React.Component {
+  
   state = {
     isCreating: false,
     music: "",
     artist: "",
     url: "",
+    audioSrc: "",
   };
 
   handleIsCreating = () => {
@@ -62,21 +83,8 @@ export default class PlaylistDetail extends React.Component {
     this.setState({ url: event.target.value });
   };
 
-  random_rgba = () => {
-    let o = Math.round,
-      r = Math.random,
-      s = 255;
-    return (
-      "rgba(" +
-      o(r() * s) +
-      "," +
-      o(r() * s) +
-      "," +
-      o(r() * s) +
-      "," +
-      r().toFixed(1) +
-      ")"
-    );
+  handleAudioSrc = (audio) => {
+    this.setState({ audioSrc: audio });
   };
 
   createPlaylistTrack = async () => {
@@ -96,14 +104,15 @@ export default class PlaylistDetail extends React.Component {
 
   render() {
     const playlistTracks = this.props.playlistTracks.map((track) => {
+      const trackNumber = Math.round(Math.random() * 100);
       return (
         <TrackCard
-        color={"blue"}
           key={track.id}
           artist={track.artist}
           id={track.id}
           name={track.name}
-          url={track.url}
+          changeAudio={this.handleAudioSrc}
+          audio={`http://spoti4.future4.com.br/${trackNumber}.mp3`}
         />
       );
     });
@@ -137,6 +146,12 @@ export default class PlaylistDetail extends React.Component {
         <button onClick={this.handleIsCreating}>Adicionar Musica</button>
         {this.state.isCreating ? createInput() : <Fragment></Fragment>}
         <PlaylistTracksDiv>{playlistTracks}</PlaylistTracksDiv>
+        <AudioPlayerContainer>
+          <ReactAudioPlayer
+            src={this.state.audioSrc}
+            controls
+          />
+        </AudioPlayerContainer>
       </PlaylistContainer>
     );
   }
