@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL, config } from "./config";
+import { baseURL, config } from "../config";
 
 export const getPlaylists = async () => {
   try {

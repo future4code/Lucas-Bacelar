@@ -5,13 +5,36 @@ import PlaylistCreateForm from "./PlaylistCreateForm";
 
 const NavigationContainer = styled.section`
   background-color: black;
-  color: white;
+  color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
+  padding: 10px 40px;
 
   & > ul > li {
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 6px 0;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.9);
+    }
   }
+
+  & > h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  & > h2 {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
 `;
 
 export default class NavigationBar extends React.Component {
@@ -45,7 +68,7 @@ export default class NavigationBar extends React.Component {
     };
 
     const playlistItems = this.props.playlistsArray.map((item) => {
-      return <PlaylistItem name={item.name} id={item.id} fetchDetail={this.props.fetchDetail}/>;
+      return <PlaylistItem name={item.name} id={item.id} fetchDetail={this.props.fetchDetail} refresh={this.props.refresh}/>;
     }).reverse();
 
     return (

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import NavigationBar from "./NavigationBar";
-import * as api from "../utils/api";
+import * as Labefy from "../utils/Apis/Labefy";
 import LibraryPage from "../Pages/LibraryPage";
 import HomePage from "../Pages/HomePage";
+import SearchPage from "../Pages/SearchPage"
 import PlaylistDetail from "../Pages/PlaylistDetail";
 import { baseURL, config } from "../utils/config";
 import axios from "axios";
@@ -12,6 +13,13 @@ const AppContainer = styled.main`
   display: grid;
   min-height: 100vh;
   grid-template-columns: 260px 1fr;
+`;
+
+const LoadingPage = styled.div`
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default class App extends React.Component {
@@ -26,15 +34,15 @@ export default class App extends React.Component {
   }
 
   getPlaylistsAux = async () => {
-    api.getPlaylists().then((response) => {
+    Labefy.getPlaylists().then((response) => {
       if (response) {
         this.setState({ playlistArray: response });
       }
-    });
+    })
   };
 
   createPlaylistAux = async (newName) => {
-    api.createPlaylist(newName).then((response) => {
+    Labefy.createPlaylist(newName).then((response) => {
       if (response) {
         this.getPlaylistsAux();
       }
@@ -44,7 +52,6 @@ export default class App extends React.Component {
   getPlaylistTracks = async (id) => {
     try {
       const response = await axios.get(`${baseURL}/${id}/tracks`, config);
-      console.log(response.data.result.tracks);
       this.setState({ playlistTracks: response.data.result.tracks });
     } catch (error) {
       console.log(error);
@@ -56,13 +63,14 @@ export default class App extends React.Component {
       case "home":
         return <HomePage>Home</HomePage>;
       case "search":
-        return <div>Search</div>;
+        return <SearchPage />;
       case "library":
         return (
           <LibraryPage
             playlistArray={this.state.playlistArray}
             page={this.state.page}
             fetchDetail={this.onClickPlaylistDetail}
+            refresh={this.getPlaylistsAux}
           />
         );
       case "playlist":
@@ -74,14 +82,17 @@ export default class App extends React.Component {
             refresh={this.getPlaylistTracks}
           />
         );
+      case "loading":
+        return <LoadingPage>Loading...</LoadingPage>;
       default:
         return <div>Error</div>;
     }
   };
 
   onClickPlaylistDetail = async (id, name) => {
-    this.setState({ page: "playlist", playlistId: id, playlistName: name });
-    this.getPlaylistTracks(id);
+    this.setState({ page: "loading", playlistId: id, playlistName: name });
+    await this.getPlaylistTracks(id);
+    this.setState({ page: "playlist" });
   };
 
   onClickChangePage = (event) => {
@@ -95,6 +106,7 @@ export default class App extends React.Component {
     return (
       <AppContainer>
         <NavigationBar
+          refresh={this.getPlaylistsAux}
           changepage={this.onClickChangePage}
           playlistsArray={this.state.playlistArray}
           createPlaylist={this.createPlaylistAux}
