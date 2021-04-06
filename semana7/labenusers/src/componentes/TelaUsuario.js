@@ -131,25 +131,25 @@ export default class TelaUsuario extends react.Component {
   };
 
   enviarEdicao = () => {
-        const body = {
-            name: this.state.novoNome,
-            email: this.state.novoEmail,
-        }
+    const body = {
+      name: this.state.novoNome,
+      email: this.state.novoEmail,
+    }
 
-      const id = this.props.id;
-      axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, body, {
-          headers: {
-              Authorization: 'lucas-bacelar-cruz'
-          }
-      }).then((response) => {
-        alert("O usuario foi editado com sucesso");
-        this.setState({
-            nome: this.state.novoNome,
-            email: this.state.novoEmail,
-        })
-      }).catch((error) => {
-        alert("Ocorreu um erro ao editar o usuario");
+    const id = this.props.id;
+    axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, body, {
+      headers: {
+        Authorization: 'lucas-bacelar-cruz'
+      }
+    }).then((response) => {
+      alert("O usuario foi editado com sucesso");
+      this.setState({
+        nome: this.state.novoNome,
+        email: this.state.novoEmail,
       })
+    }).catch((error) => {
+      alert("Ocorreu um erro ao editar o usuario");
+    })
   }
 
   editarDados = () => {
@@ -169,9 +169,7 @@ export default class TelaUsuario extends react.Component {
         <h1>Detalhes Usuario</h1>
         {this.mudarConteudo()}
         <DivBotoes>
-          <button
-            onClick={(event) => this.deletarUsuario(this.props.id, event)}
-          >
+          <button onClick={(event) => this.deletarUsuario(this.props.id, event)}>
             Deletar
           </button>
           <button onClick={this.props.voltar}>Voltar</button>
