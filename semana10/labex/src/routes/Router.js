@@ -23,7 +23,7 @@ const Router = () => {
 
   const pagesRoutes = pagesDetail.map((route) => {
     return (
-      <Route exact path={route.path}>
+      <Route key={route.path} exact path={route.path}>
         {route.page}
       </Route>
     );

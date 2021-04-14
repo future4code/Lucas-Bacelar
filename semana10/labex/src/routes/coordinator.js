@@ -18,8 +18,8 @@ const goToAdminHomePage = (history) => {
   history.push("/admin/trips/list");
 };
 
-const goToTripsDetailsPage = (history) => {
-  history.push("/admin/trips/:id");
+const goToTripsDetailsPage = (history, id) => {
+  history.push(`/admin/trips/${id}`);
 };
 
 const goToCreateTripPage = (history) => {
