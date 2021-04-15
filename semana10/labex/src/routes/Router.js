@@ -17,8 +17,8 @@ const Router = () => {
     { page: <ApplicationFormPage />, path: "/trips/application" },
     { page: <LoginPage />, path: "/login" },
     { page: <AdminHomePage />, path: "/admin/trips/list" },
-    { page: <TripDetailsPage />, path: "/admin/trips/:id" },
     { page: <CreateTripPage />, path: "/admin/trips/create" },
+    { page: <TripDetailsPage />, path: "/admin/trips/:id" },
   ];
 
   const pagesRoutes = pagesDetail.map((route) => {

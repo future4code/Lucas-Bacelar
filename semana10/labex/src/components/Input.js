@@ -1,9 +1,16 @@
-const Input = ({ value, handleValue, placeholder }) => {
+const Input = ({ name, value, handleValue, min, max, placeholder, title, pattern, type="text"}) => {
     return (
-        <input 
+        <input
+            name= {name}
             value={value}
             onChange={handleValue}
             placeholder={placeholder}
+            type={type}
+            required
+            title={title}
+            min={min}
+            max={max}
+            pattern={pattern}
         />
     )
 }

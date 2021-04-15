@@ -15,7 +15,18 @@ const login = (body) => {
     return axios.post('/login', body);
 }
 
+const applyToTrip = (id, data) => {
+    axios
+    .post(`/trips/${id}/apply`, data)
+    .then((res) => {
+        console.log(res)
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
 export {
     getTrips,
+    applyToTrip,
     login
 }

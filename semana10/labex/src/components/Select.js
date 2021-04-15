@@ -1,8 +1,9 @@
-const Select = ({ value, handleValue, options }) => {
+const Select = ({ name, value, handleValue, placeholder, options }) => {
     return (
-        <select value={value} onChange={handleValue}>
+        <select required name={name} value={value} onChange={handleValue}>
+            <option key={Date.now()} value="" defaultValue disabled>{placeholder}</option>
             {options.map((option) =>  {
-                return  <option value={option}>{option}</option>
+                return  <option key={option} value={option}>{option}</option>
             })}
         </select>
     )
