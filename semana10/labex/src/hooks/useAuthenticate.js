@@ -11,6 +11,8 @@ const useAuthenticate = () => {
 
         if(!user || !token) {
             goToLoginPage(history)
+        } else {
+            return { token, user }
         }
     }, [history])
 }

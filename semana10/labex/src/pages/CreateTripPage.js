@@ -1,33 +1,27 @@
-import { useAuthenticate, useForm } from "../hooks/index";
+import { useAuthenticate, useForm, useDate } from "../hooks/index";
 import { Input, Select } from "../components/index";
 import { goToAdminHomePage } from "../routes/coordinator";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router"
+import * as api from '../utils/labexAPI'
 
 const CreateTripPage = () => {
   useAuthenticate();
   const history = useHistory();
-  const [date, setDate] = useState('')
+  const [date] = useState(useDate())
   const [form, handleInputChange, resetForm] = useForm({
     name: "",
     planet: "",
     date: "",
     description: "",
-    duration: "",
+    durationInDays: 50,
   });
+
   const planets = ['Mercurio', 'Venus', 'Terra', 'Marte', 'Jupiter', 'Saturno', 'Urano', 'Netuno'];
-  
-  useEffect(() => {
-      const now = new Date()
-      const day = (String(now.getDate() + 1)).padStart(2, 0);
-      const month = (String(now.getMonth() + 1)).padStart(2, 0);
-      const year = (String(now.getFullYear()));
-      setDate(`${year}-${month}-${day}`)
-  }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(form);
+    api.createTrip(form);
     resetForm()
   };
 
@@ -66,8 +60,8 @@ const CreateTripPage = () => {
         />
         <Input
           type="number"
-          name="duration"
-          value={form.duration}
+          name="durationInDays"
+          value={form.durationInDays}
           handleValue={handleInputChange}
           min="50"
           placeholder="Duração em dias"

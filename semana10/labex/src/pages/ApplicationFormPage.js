@@ -1,17 +1,16 @@
 import { useHistory } from "react-router";
 import { Input, Select } from "../components/index";
 import { useForm } from "../hooks/index";
-import * as api from '../utils/labexAPI'
-import getCountries from '../utils/restCountriesAPI'
+import * as api from "../utils/labexAPI";
+import getCountries from "../utils/restCountriesAPI";
 import { useEffect, useState } from "react";
-
 
 const ApplicationFormPage = () => {
   const history = useHistory();
   const [trips, setTrips] = useState([]);
   const [countries, setCountries] = useState([]);
 
-  const [form, handleInputChange] = useForm({
+  const [form, handleInputChange, resetForm] = useForm({
     trip: "",
     name: "",
     age: 18,
@@ -21,35 +20,42 @@ const ApplicationFormPage = () => {
   });
 
   useEffect(() => {
-    api.getTrips()
-    .then((res) => {
-      setTrips(res)
-    })
+    api.getTrips().then((res) => {
+      setTrips(res);
+    });
 
-   getCountries()
-   .then((res) => {
-     setCountries(res.map((country) => country.name))
-   })
-}, []);
+    getCountries().then((res) => {
+      setCountries(res.map((country) => country.name));
+    });
+  }, []);
 
   const onSubmit = (e) => {
     const { trip, ...body } = form;
-    console.log("trip:",trip)
-    console.log("body:",body)
-
-    api.applyToTrip(trip, body)
-
     e.preventDefault();
+
+    api.applyToTrip(trip, body).then((res) => {
+      resetForm();
+      alert(res);
+    });
   };
 
   return (
     <div>
       <h1>Inscreva-se para uma viagem</h1>
       <form onSubmit={onSubmit}>
-        <select name="trip" value={form.trip} onChange={handleInputChange} required>
-          <option value="" defaultValue disable>Escolha uma viagem</option>
+        <select
+          name="trip"
+          value={form.trip}
+          onChange={handleInputChange}
+          required
+        >
+          <option value="" defaultValue disable>
+            Escolha uma viagem
+          </option>
           {trips.map((trip) => {
-            return <option value={trip.id} >{`${trip.name} - ${trip.planet}`}</option>
+            return (
+              <option value={trip.id}>{`${trip.name} - ${trip.planet}`}</option>
+            );
           })}
         </select>
         <Input
@@ -88,7 +94,9 @@ const ApplicationFormPage = () => {
           placeholder="Escolha um pais"
           options={countries ? countries : []}
         />
-        <button type="button" onClick={() => history.goBack()}>Voltar</button>
+        <button type="button" onClick={() => history.goBack()}>
+          Voltar
+        </button>
         <button type="submit">Enviar</button>
       </form>
     </div>
