@@ -1,75 +1,61 @@
-import { useAuthenticate, useForm, useDate } from "../hooks/index";
-import { Input, Select } from "../components/index";
-import { goToAdminHomePage } from "../routes/coordinator";
-import { useState } from "react";
-import { useHistory } from "react-router"
-import * as api from '../utils/labexAPI'
+import { useAuthenticate } from '../hooks/index';
+import styled from 'styled-components';
+import { goToAdminHomePage } from '../routes/coordinator';
+import { useHistory } from 'react-router';
+import Form from '../components/CreateTripPage/Form';
+import { Button } from './../components/index';
+
+const PageContainer = styled.main`
+  display: grid;
+  grid-template-columns: 5fr 8fr;
+
+  & > div:first-child {
+    background: linear-gradient(
+      to bottom right,
+      rgba(141, 145, 185, 0.45),
+      rgba(49, 52, 71, 0.78)
+    );
+  }
+
+  & > div:nth-child(2) {
+    width: 100%;
+    height: 100%;
+
+    padding: 40px 32px;
+
+    & > h1 {
+      color: white;
+      font-size: 2.75rem;
+      text-align: center;
+    }
+
+    & > button {
+      position: relative;
+      top: 80px;
+      font-size: 1.5rem;
+      padding: 5px 20px;
+    }
+  }
+`;
 
 const CreateTripPage = () => {
   useAuthenticate();
   const history = useHistory();
-  const [date] = useState(useDate())
-  const [form, handleInputChange, resetForm] = useForm({
-    name: "",
-    planet: "",
-    date: "",
-    description: "",
-    durationInDays: 50,
-  });
-
-  const planets = ['Mercurio', 'Venus', 'Terra', 'Marte', 'Jupiter', 'Saturno', 'Urano', 'Netuno'];
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    api.createTrip(form);
-    resetForm()
-  };
 
   return (
-    <div>
-      <h1>Criar viagem</h1>
-      <form onSubmit={submitForm}>
-        <Input
-          name="name"
-          value={form.name}
-          handleValue={handleInputChange}
-          placeholder="Nome"
-          title="O nome deve conter no minimo 3 letras"
-          pattern={'[a-zA-Z]{3,}'}
+    <PageContainer>
+      <div></div>
+      <div>
+        <h1>Criar viagem</h1>
+        <Form />
+        <Button
+          type="button"
+          onClick={() => goToAdminHomePage(history)}
+          text="Voltar"
+          color="alert"
         />
-        <Select
-          name="planet"
-          value={form.planet}
-          handleValue={handleInputChange}
-          options={planets}
-          placeholder="Escolha um planeta"
-        />
-        <Input
-          name="date"
-          value={form.date}
-          handleValue={handleInputChange}
-          type="date"
-          min={date ? date : ''}
-        />
-        <Input
-          name="description"
-          value={form.description}
-          handleValue={handleInputChange}
-          placeholder="Descrição"
-          pattern={'^.{30,}'}
-        />
-        <Input
-          type="number"
-          name="durationInDays"
-          value={form.durationInDays}
-          handleValue={handleInputChange}
-          min="50"
-          placeholder="Duração em dias"
-        />
-        <button type="submit">Enviar</button>
-        <button type="button" onClick={() => goToAdminHomePage(history)}>Voltar</button>
-      </form>
-    </div>
+      </div>
+    </PageContainer>
   );
 };
 
