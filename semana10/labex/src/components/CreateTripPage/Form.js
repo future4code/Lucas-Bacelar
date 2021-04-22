@@ -34,10 +34,9 @@ const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
 
-    & > textarea {
+    & > input {
       flex: 1;
       padding: 10px;
-      resize: none;
     }
   }
 
@@ -58,6 +57,8 @@ const Form = () => {
     description: '',
     durationInDays: 50,
   });
+
+  console.log(form);
 
   const planets = [
     'Mercurio',
@@ -86,7 +87,8 @@ const Form = () => {
           handleValue={handleInputChange}
           placeholder="Nome"
           title="O nome deve conter no minimo 3 letras"
-          pattern={'[a-zA-Z]{3,}'}
+          pattern="^[a-zA-Z\s\.]{3,}$"
+          required
         />
       </div>
       <div>
@@ -97,6 +99,7 @@ const Form = () => {
           handleValue={handleInputChange}
           options={planets}
           placeholder="Escolha um planeta"
+          required
         />
       </div>
       <div>
@@ -111,13 +114,16 @@ const Form = () => {
       </div>
       <div>
         <label>Descriçao</label>
-        <textarea
+        <input
           name="description"
+          type="text"
           value={form.description}
-          handleValue={handleInputChange}
+          onChange={handleInputChange}
           placeholder="Descrição"
-          minlength="30"
-        ></textarea>
+          title="A descrição deve contem no minimo 30 caracteres"
+          required
+          pattern="^[a-zA-Z\s\.]{30,}$"
+        />
       </div>
       <div>
         <label>Duração em dias</label>
@@ -128,6 +134,7 @@ const Form = () => {
           handleValue={handleInputChange}
           min="50"
           placeholder="Duração em dias"
+          required
         />
       </div>
       <Button type="submit" text="Enviar" color="ok" />

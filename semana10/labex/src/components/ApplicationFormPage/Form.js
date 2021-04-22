@@ -29,9 +29,12 @@ const FormContainer = styled.form`
 
   & > div:nth-of-type(6) {
     flex: 2.5;
-    & > textarea {
+    display: flex;
+    flex-direction: column;
+
+    & > input {
+      flex: 1;
       padding: 10px;
-      resize: none;
     }
   }
 
@@ -90,7 +93,8 @@ const Form = ({ history, trips, countries }) => {
           value={form.name}
           handleValue={handleInputChange}
           placeholder="Nome"
-          pattern={'^[a-zA-Z]{3,}'}
+          pattern="^[a-zA-Z\s\.]{3,}$"
+          required
         />
       </div>
       <div>
@@ -102,6 +106,7 @@ const Form = ({ history, trips, countries }) => {
           placeholder="Idade"
           type="number"
           min="18"
+          required
         />
       </div>
       <div>
@@ -112,6 +117,7 @@ const Form = ({ history, trips, countries }) => {
           handleValue={handleInputChange}
           placeholder="Profissão"
           pattern={'^.{10,}'}
+          required
         />
       </div>
       <div>
@@ -122,17 +128,20 @@ const Form = ({ history, trips, countries }) => {
           handleValue={handleInputChange}
           placeholder="Escolha um pais"
           options={countries ? countries : []}
+          required
         />
       </div>
       <div>
         <label>Texto candidatura</label>
-        <textarea
+        <input
           name="applicationText"
+          type="text"
           value={form.applicationText}
           onChange={handleInputChange}
           placeholder="Texto de candidatura"
-          minlength="30"
-        ></textarea>
+          pattern="^[a-zA-Z\s\.]{30,}$"
+          required
+        />
       </div>
       <Button type="submit" text="Enviar" color="ok" />
     </FormContainer>
