@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLORS } from '../utils/colors';
 
 const CardContainer = styled.article`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +10,7 @@ const CardContainer = styled.article`
   gap: 15px;
   background: ${COLORS.cardBkg};
   opacity: 0.9;
+  word-break: break-word;
 
   * {
     margin: 0;

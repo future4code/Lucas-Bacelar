@@ -18,7 +18,7 @@ const TripsContainer = styled.section`
   padding: 0 180px;
   justify-items: center;
   grid-gap: 80px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 `;
 
 const PageContainer = styled.main`
