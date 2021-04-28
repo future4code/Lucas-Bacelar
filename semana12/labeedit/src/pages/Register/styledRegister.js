@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginContainer = styled.main`
+const RegistrationContainer = styled.main`
   min-height: 530px;
   max-width: 840px;
   margin: 80px auto 0;
@@ -24,7 +24,7 @@ const LoginContainer = styled.main`
   }
 `;
 
-const LoginContent = styled.section`
+const RegistrationContent = styled.section`
   border-radius: 0 8px 8px 0;
   padding: 54px 0;
   display: flex;
@@ -38,7 +38,7 @@ const LoginContent = styled.section`
   }
 `;
 
-const LoginForm = styled.form`
+const RegistrationForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,19 +62,6 @@ const LoginForm = styled.form`
       opacity: 1;
     }
   }
-
-  & > button:last-of-type {
-    width: 125px;
-    background-color: white;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    font-size: 20px;
-    font-weight: 500;
-
-    &:hover {
-      background: var(--primary-hover);
-    }
-  }
 `;
 
-export { LoginContainer, LoginContent, LoginForm };
+export { RegistrationContainer, RegistrationForm, RegistrationContent };

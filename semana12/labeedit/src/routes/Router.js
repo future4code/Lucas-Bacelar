@@ -1,16 +1,18 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Login } from 'pages/index';
+import { Header } from 'components/layout/index';
+import { Login, Register } from 'pages/index';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact path="/">
           <Login />
         </Route>
 
         <Route exact path="/registro">
-          <h1>Registro</h1>
+          <Register />
         </Route>
 
         <Route exact path="/feed">

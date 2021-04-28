@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Header } from 'components/layout/index';
 import Router from 'routes/Router';
 
 const PageContainer = styled.div`
@@ -10,7 +9,6 @@ const PageContainer = styled.div`
 function App() {
   return (
     <PageContainer>
-      <Header />
       <Router />
     </PageContainer>
   );

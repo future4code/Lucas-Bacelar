@@ -2,8 +2,9 @@
 
 :root {
   --primary: #0079D3;
+  --primary-hover: #0079d333;
   --secondary: #FDFDFD;
-  --border: rgba(93, 93, 93, 0.5);
+  --border: rgba(93, 93, 93, 0.4);
   --form-background: #E8F0FE;
   --form-lateral-div: #C1E0FF;
   --page-background: #DAE0E6;
@@ -30,4 +31,13 @@ button {
   border: none;
   box-shadow: none;
   line-height: 0;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+button {
+  cursor: pointer;
 }
