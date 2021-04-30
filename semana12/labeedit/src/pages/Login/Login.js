@@ -2,25 +2,18 @@ import { LoginContainer, LoginForm, LoginContent } from './styledLogin';
 import logo from 'assets/Logo.png';
 import { Input } from 'components/common/index';
 import { useForm } from 'hooks/index';
-import labeddit from 'services/labeddit';
 import { useHistory } from 'react-router';
 import { goToRegisterPage } from 'routes/coordinator';
+import { useContext } from 'react';
+import GlobalStateContext from 'global/GlobalStateContext';
 
 const Login = () => {
   const history = useHistory();
-  const [form, handleInput, resetForm] = useForm({ email: '', password: '' });
+  const [form, handleInput] = useForm({ email: '', password: '' });
+  const { login } = useContext(GlobalStateContext);
 
-  const Login = (e) => {
-    e.preventDefault();
-    labeddit
-      .login(form)
-      .then((response) => {
-        console.log(response);
-        resetForm();
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+  const loginAux = (event) => {
+    login(event, form);
   };
 
   return (
@@ -28,7 +21,8 @@ const Login = () => {
       <div></div>
       <LoginContent>
         <img src={logo} alt="logo with site name" />
-        <LoginForm onSubmit={Login}>
+        <h2>Login</h2>
+        <LoginForm onSubmit={loginAux}>
           <Input
             type="email"
             name="email"
@@ -45,7 +39,7 @@ const Login = () => {
           />
           <button>Login</button>
           <button type="button" onClick={() => goToRegisterPage(history)}>
-            Cadastrar
+            Cadastrar-se
           </button>
         </LoginForm>
       </LoginContent>

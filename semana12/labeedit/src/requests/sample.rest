@@ -1,7 +1,7 @@
 ### Variables
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IklzV0ZlQXpOb0tSZ21nNms3ZTNlIiwiZW1haWwiOiJ0ZXN0ZTEwN0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6InRlc3RlMTA3IiwiaWF0IjoxNjE5NTU1ODg0fQ.BstdDcSQKzYmHyI5sNAzv17XtplRYUArqf5yeNTHTwM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IklzV0ZlQXpOb0tSZ21nNms3ZTNlIiwiZW1haWwiOiJ0ZXN0ZTEwN0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6InRlc3RlMTA3IiwiaWF0IjoxNjE5ODAwMTE1fQ.8kA1laxwkJA7t02Q16wF9JkrL_Co8RqahtAKzBtSnKE
 @baseURL = https://us-central1-labenu-apis.cloudfunctions.net/labEddit
-@postId = 00udQwWI6mDqYeiFRnsQ
+@postId = 0NEWyXAKZRSbWUMyjGlH
 @commentId = 7RUkVV8ZpRvi7dnFjpGb
 
 
@@ -62,7 +62,7 @@ Authorization: {{token}}
 	"title": "Testando criação de posts 1... 2... 3..."
 }
 
-### Creatre a comment 
+### Create a comment 
 POST {{baseURL}}/posts/{{postId}}/comment
 Content-Type: application/json
 Authorization: {{token}}

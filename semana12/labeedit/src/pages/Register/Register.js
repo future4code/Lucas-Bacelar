@@ -7,25 +7,20 @@ import {
   RegistrationContent,
   RegistrationForm,
 } from './styledRegister';
+import { useContext } from 'react';
+import GlobalStateContext from 'global/GlobalStateContext';
 
 const Register = () => {
-  const [form, handleInput, resetForm] = useForm({
+  const [form, handleInput] = useForm({
     username: '',
     email: '',
     password: '',
   });
+  const { register } = useContext(GlobalStateContext);
 
-  const Register = (e) => {
+  const registerAux = (e) => {
     e.preventDefault();
-    labeddit
-      .signup(form)
-      .then((response) => {
-        console.log(response);
-        resetForm();
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    register(form);
   };
 
   return (
@@ -33,7 +28,8 @@ const Register = () => {
       <div></div>
       <RegistrationContent>
         <img src={logo} alt="logo with site name" />
-        <RegistrationForm onSubmit={Register}>
+        <h2>Cadastro</h2>
+        <RegistrationForm onSubmit={registerAux}>
           <Input
             type="text"
             name="username"

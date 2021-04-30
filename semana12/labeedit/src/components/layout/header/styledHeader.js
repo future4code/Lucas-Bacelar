@@ -15,6 +15,11 @@ export const HeaderContainer = styled.header`
     display: flex;
     gap: 20px;
     align-items: center;
+
+    & > h3 {
+      padding: 0;
+      margin: 0;
+    }
   }
 
   @media (max-width: 500px) {

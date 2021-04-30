@@ -25,16 +25,24 @@ const RegistrationContainer = styled.main`
 `;
 
 const RegistrationContent = styled.section`
+  position: relative;
   border-radius: 0 8px 8px 0;
   padding: 54px 0;
   display: flex;
-  gap: 73px;
+  gap: 30px;
   flex-direction: column;
   align-items: center;
   background: white;
 
   & > img {
     height: 48px;
+  }
+
+  & > h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.75rem;
+    font-weight: 500;
   }
 `;
 

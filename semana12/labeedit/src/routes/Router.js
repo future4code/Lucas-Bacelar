@@ -1,28 +1,33 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Header } from 'components/layout/index';
-import { Login, Register } from 'pages/index';
+import { Login, Register, Feed, Post } from 'pages/index';
+import GlobalState from 'global/GlobalState';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
+      <GlobalState>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
 
-        <Route exact path="/registro">
-          <Register />
-        </Route>
+          <Route exact path="/registro">
+            <Register />
+          </Route>
 
-        <Route exact path="/feed">
-          <h1>Feed</h1>
-        </Route>
+          <Route exact path="/feed">
+            <Feed />
+          </Route>
 
-        <Route exact path="/post/:id">
-          <h1>Post</h1>
-        </Route>
-      </Switch>
+          <Route exact path="/post/:id">
+            <Post />
+          </Route>
+
+          <Route path="*">
+            <h1>Error 404</h1>
+          </Route>
+        </Switch>
+      </GlobalState>
     </BrowserRouter>
   );
 };
