@@ -1,0 +1,73 @@
+### Variables
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IklzV0ZlQXpOb0tSZ21nNms3ZTNlIiwiZW1haWwiOiJ0ZXN0ZTEwN0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6InRlc3RlMTA3IiwiaWF0IjoxNjE5ODAwMTE1fQ.8kA1laxwkJA7t02Q16wF9JkrL_Co8RqahtAKzBtSnKE
+@baseURL = https://us-central1-labenu-apis.cloudfunctions.net/labEddit
+@postId = 0NEWyXAKZRSbWUMyjGlH
+@commentId = 7RUkVV8ZpRvi7dnFjpGb
+
+
+### Login
+POST {{baseURL}}/login
+Content-Type: application/json
+
+{
+  "email": "teste107@gmail.com",
+	"password": "teste107"
+}
+
+### Signup
+POST {{baseURL}}/signup
+Content-Type: application/json
+
+{
+  "email": "teste107@gmail.com",
+	"password": "teste107",
+	"username": "teste107"
+}
+
+### Get Posts
+GET {{baseURL}}/posts
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get Post Details
+GET {{baseURL}}/posts/{{postId}}
+Content-Type: application/json
+Authorization: {{token}}
+
+### Vote a Post
+PUT {{baseURL}}/posts/{{postId}}/vote
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "direction": -1
+}
+
+### Vote a comment
+PUT {{baseURL}}/posts/{{postId}}/comment/{{commentId}}/vote
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "direction": -1
+}
+
+### Create a post 
+POST {{baseURL}}/posts
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"text": "Testando criação de posts 1... 2... 3...",
+	"title": "Testando criação de posts 1... 2... 3..."
+}
+
+### Create a comment 
+POST {{baseURL}}/posts/{{postId}}/comment
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"text": "Apenas um comentário aleatorio por aqui"
+}
+
