@@ -9,6 +9,7 @@ type Venda = {
   prato: string
   cliente: string
   valor: number
+  custo: number
 }
 
 let cardapio: Array<Prato> = []
@@ -39,6 +40,7 @@ function venderPrato(pratoPedido: string, cliente: string): void {
       cliente: cliente,
       prato: pratoPedido,
       valor: pratoPesquisado.valorDeVenda,
+      custo: pratoPesquisado.custo,
     }
     vendas = [...vendas, cadastroVenda]
     console.log(`Prato ${pratoPedido} vendido com sucesso!`)
@@ -49,7 +51,7 @@ function venderPrato(pratoPedido: string, cliente: string): void {
 
 function lucroRestaurante(): number {
   const lucro = vendas.reduce((acc, venda) => {
-    return acc + venda.valor
+    return acc + (venda.valor - venda.custo)
   }, 0)
   return lucro
 }
