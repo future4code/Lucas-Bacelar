@@ -117,13 +117,14 @@ app.get('/users/:name', (req: Request, res: Response) => {
 })
 
 app.post('/users', (req: Request, res: Response) => {
-  const { id, name, email, type, age } = req.body
+  const { name, email, type, age } = req.body
   let errorCode = 400
 
   try {
     let regex = /\S+@\S+\.\S+/
 
     const nameExist = users.some((user) => user.name === name)
+
     if (nameExist) {
       errorCode = 409
       throw new Error('The name of the user already exist')
@@ -149,6 +150,68 @@ app.post('/users', (req: Request, res: Response) => {
     res.status(201).send(newUser)
   } catch (error) {
     res.status(errorCode).send({ message: error.message })
+  }
+})
+
+app.put('/users', (req: Request, res: Response) => {
+  const body = req.body
+  try {
+    if (users.length === 0) {
+      throw new Error('No registered users')
+    }
+    const lastIndex = users.length - 1
+
+    users = users.map((user, index) => {
+      if (index === lastIndex) {
+        return {
+          ...user,
+          name: `${body.name}-ALTERADO`,
+        }
+      }
+      return user
+    })
+
+    res.status(200).send(users[lastIndex])
+  } catch (error) {
+    res.status(404).send(error.message)
+  }
+})
+
+app.patch('/users', (req: Request, res: Response) => {
+  const body = req.body
+  try {
+    if (users.length === 0) {
+      throw new Error('No user registered')
+    }
+    const lastIndex = users.length - 1
+
+    users = users.map((user, index) => {
+      if (index === lastIndex) {
+        return {
+          ...user,
+          name: `${body.name}-REALTERADO`,
+        }
+      }
+      return user
+    })
+
+    res.status(200).send(users[lastIndex])
+  } catch (error) {
+    res.status(404).send(error.message)
+  }
+})
+
+app.delete('/users/:id', (req: Request, res: Response) => {
+  const id: number = Number(req.params.id)
+  try {
+    if (isNaN(id)) {
+      throw new Error('Send a valid id')
+    }
+
+    users = users.filter((user) => user.id !== id)
+    res.status(204).send({ message: 'successful deletion' })
+  } catch (error) {
+    res.status(409).send(error.message)
   }
 })
 
