@@ -119,3 +119,145 @@ O erro aconteceu por quê uma das colunas estava com o nome errado em vez de **n
 ~~~~sql
 SELECT id, name from Actor WHERE id = "002"
 ~~~~
+
+## Exercicio 4
+~~~~sql
+SELECT * FROM Actor
+WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000
+~~~~
+#### a)
+A query do exemplo seleciona todos os atores em que o nome começa com a ou com j e em que o salário é maior que 300000 e mostra todas as suas colunas.
+
+#### b)
+~~~~sql
+SELECT * FROM Actor
+WHERE name NOT LIKE "A%" AND salary > 350000
+~~~~
+
+#### c)
+~~~~sql
+SELECT * FROM Actor
+WHERE name LIKE "%G%" OR name LIKE "%g%" AND salary > 350000
+~~~~
+
+#### D)
+~~~~sql
+SELECT * FROM Actor
+WHERE (name LIKE "%G%" OR name LIKE "%g%" OR name LIKE "%A%" OR name LIKE "%a%") AND (salary >= 350000 AND SALARY <= 900000)
+~~~~
+
+## Exercicio 5
+
+#### a)
+Essa query cria uma tabela com o nome movies, e que contem uma primary key do tipo varchar, e colunas que não podem aceitar valores nulos como o **name(varchar)**, **synopsis(text)**, **launch_date(date)** e o **rating(float)**
+
+~~~~sql
+CREATE TABLE Movies (
+	 id VARCHAR(255) PRIMARY KEY, 
+     name VARCHAR(255) NOT NULL, 
+     synopsis TEXT NOT NULL , 
+     launch_date DATE NOT NULL,
+     rating FLOAT NOT NULL 
+);
+~~~~
+
+#### b)
+~~~~sql
+INSERT INTO Movies (id, title, synopsis, release_date, rating) 
+VALUES(
+	"001",
+    "Se Eu Fosse Você",
+    "Cláudio e Helena são casados há muitos anos e enfrentam a rotina do casamento. Um dia eles são atingidos por um fenômeno inexplicável e trocam de corpos",
+    "2006/01/06",
+    7
+)
+~~~~
+
+#### c)
+~~~~sql
+INSERT INTO Movies (id, title, synopsis, release_date, rating) 
+VALUES(
+	"002",
+    "Doce de mãe",
+    "Dona Picucha, uma animada senhora de 85 anos, sempre causa grandes confusões. A vida dela e dos seus quatro filhos sofre uma reviravolta depois que Zaida, empregada e amiga de Dona Picucha, anuncia que vai se casar e não poderá mais morar com ela",
+    "2012/12/27",
+    10
+)
+~~~~
+
+#### d)
+~~~~sql
+INSERT INTO Movies (id, title, synopsis, release_date, rating) 
+VALUES(
+	"003",
+    "Dona Flor e Seus Dois Maridos",
+    "Dona Flor é uma sedutora professora de culinária casada com Vadinho, que só quer saber de farras e jogatina nas boates. A vida de abusos acaba por acarretar sua morte precoce.",
+    "2017/11/02",
+    8
+)
+~~~~
+
+#### e)
+~~~~sql
+INSERT INTO Movie (id, title, synopsis, release_date, rating) 
+VALUES(
+	"004",
+    "Deus é Brasileiro",
+    "Cansado da humanidade, Deus resolve tirar férias para descansar e procura alguém no Brasil capaz de substituí-lo. O borracheiro e pescador Taoca e a solitária Madá deverão guiá-lo até Quincas das Mulas, candidato de Deus a santo.",
+    "2003-01-31",
+    9
+)
+~~~~
+
+## Exercicio 6
+
+#### a)
+~~~~sql
+SELECT id, title, rating FROM Movies
+WHERE id="001"
+~~~~~
+
+#### b)
+~~~~sql
+SELECT * FROM Movies
+WHERE title="Se Eu Fosse Você"
+~~~~~
+
+#### c)
+~~~~sql
+SELECT id, title, synopsis FROM Movies
+WHERE rating >= 7
+~~~~~
+
+## Exercicio 7
+#### a)
+~~~~sql
+SELECT * FROM Movies
+WHERE title LIKE "%vida%"
+~~~~~
+
+#### b)
+~~~~sql
+SELECT * FROM Movies
+WHERE title LIKE "%vida%" OR synopsis LIKE "%vida%"
+~~~~~
+
+#### c)
+~~~~sql
+SELECT * FROM Movies
+WHERE release_date < CURDATE()
+~~~~~
+
+#### d)
+~~~~sql
+SELECT 
+    *
+FROM
+    Movies
+WHERE
+    release_date < CURDATE()
+        AND (title LIKE '%vida%'
+        OR synopsis LIKE '%vida%')
+        AND rating >= 7
+~~~~~
+
