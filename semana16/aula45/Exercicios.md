@@ -5,7 +5,7 @@
 - **CREATE TABLE** - Cria uma nova tabela com o nome dado, 
 - **VARCHAR(n)** - Faz com que o tipo da coluna seja uma string e o n é o numero máximo de caracteres
 - **DATE** - Faz com que o tipo da coluna seja data.
-- **NOT NULL** - Faz com que não seja possivel não atribuir valores ou atribuir valores nulos a aquela tabela.
+- **NOT NULL** - Faz com que não seja possivel atribuir valores nulos a aquela tabela.
 - **PRIMARY KEY** - Faz com que aquela coluna da tabela seja um identificador unico.
 
 #### b) 
