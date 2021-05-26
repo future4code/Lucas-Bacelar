@@ -1,7 +1,13 @@
 import { Request, Response } from 'express'
 import app from './app'
 import { connection } from './connection'
-import { countActors, searchByName } from './queries'
+import {
+  countActors,
+  createActor,
+  deleteActor,
+  getActorById,
+  updateSalary,
+} from './queries'
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, world!')
@@ -19,41 +25,70 @@ app.get('/actors', async (req: Request, res: Response) => {
   }
 })
 
-app.get('/actors/:nome', async (req: Request, res: Response) => {
+app.get('/actor', async (req: Request, res: Response) => {
   try {
-    const nome = req.params.nome
-    const result = await searchByName(nome)
-
-    res.send(result)
+    const count = await countActors(req.query.gender as string)
+    res.status(200).send({
+      quantidade: count,
+    })
   } catch (error) {
-    console.log(error.sqlMessage || error.message)
-
-    res.status(500).send('An unexpected error occurred')
+    res.status(400).send({
+      message: error.sqlMessage || error.message,
+    })
   }
 })
 
-app.get('/actors/count/:gender', async (req: Request, res: Response) => {
+app.get('/actor/:id', async (req: Request, res: Response) => {
   try {
-    const gender = req.params.gender
-    const result = await countActors(gender)
+    const id = req.params.id
+    const actor = await getActorById(id)
 
-    res.send(result[0])
+    res.status(200).send(actor)
   } catch (error) {
-    console.log(error.sqlMessage || error.message)
-
-    res.status(500).send('An unexpected error occurred')
+    res.status(400).send({
+      message: error.sqlMessage || error.message,
+    })
   }
 })
 
-// app.put('/actors/salary/:id', async (req: Request, res: Response) => {
-//   try {
-//     const gender = req.params.gender
-//     const result = await countActors(gender)
+app.put('/actor', async (req: Request, res: Response) => {
+  try {
+    await createActor(
+      req.body.id,
+      req.body.name,
+      req.body.salary,
+      new Date(req.body.dateOfBirth),
+      req.body.salary
+    )
 
-//     res.send(result[0])
-//   } catch (error) {
-//     console.log(error.sqlMessage || error.message)
+    res.status(200).send()
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    })
+  }
+})
 
-//     res.status(500).send('An unexpected error occurred')
-//   }
-// })
+app.post('/actor', async (req: Request, res: Response) => {
+  try {
+    await updateSalary(req.body.id, req.body.salary)
+
+    res.status(200).send({ message: 'Updated!' })
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    })
+  }
+})
+
+app.delete('/actor/:id', async (req: Request, res: Response) => {
+  try {
+    await deleteActor(req.body.id)
+
+    res.status(204).send({ message: 'Deleted!' })
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    })
+  }
+})
