@@ -39,3 +39,21 @@ app.put('/user', async (req: Request, res: Response) => {
     res.status(400).send({ message: error.sqlMessage || error.message })
   }
 })
+
+app.get('/user/:id', async (req: Request, res: Response) => {
+  try {
+    const id: string = String(req.params.id)
+    if (!id) {
+      throw new Error('Por favor coloque um id válido')
+    }
+
+    const result = await connection('TodoListUser').where('id', id)
+    if (result.length === 0) {
+      throw new Error('O usuário não foi encontrado')
+    }
+
+    res.status(200).send(result[0])
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+})
