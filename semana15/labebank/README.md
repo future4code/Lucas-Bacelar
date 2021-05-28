@@ -12,7 +12,7 @@ O **Labebank** é o backend de uma aplicação bancária contendo as principais 
 ## 🛠 Instalação
 ```bash
 # Clone esse repositório
-$ git clone https://github.com/pedrovinhas/move-it.git
+$ svn checkout https://github.com/future4code/Lucas-Bacelar/trunk/semana15/labebank
 
 # Acesse a pasta no projeto
 $ cd labebank
