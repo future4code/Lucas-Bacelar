@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
-export function inputValido(input: string): boolean {
-  if (input === undefined || !input) {
+export function inputValido(input: string | number | undefined): boolean {
+  if (input === undefined || input === 'undefined' || !input) {
     return false
   }
   return true

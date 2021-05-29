@@ -5,7 +5,7 @@ import connection from '../connection'
 import { dataValida, inputValido, todosValidos } from '../utils/api_helper'
 
 const taskRouter = express.Router()
-const taskTable = connection('TodoListTask')
+const taskTable = () => connection('TodoListTask as task')
 
 type Task = {
   id: string
@@ -22,6 +22,35 @@ enum STATUS {
   DONE = 'done',
 }
 
+taskRouter.get('/', async (req: Request, res: Response) => {
+  try {
+    const creatorUserId: string = String(req.query.creatorUserId)
+    console.log('userId', creatorUserId)
+
+    if (!inputValido(creatorUserId)) {
+      throw new Error('Por favor coloque um creatorUserId válido')
+    }
+
+    const result = await taskTable()
+      .join('TodoListUser as user', 'task.creator_user_id', '=', 'user.id')
+      .where('task.creator_user_id', creatorUserId)
+      .select(
+        'task.id as taskId',
+        'task.title',
+        'task.description',
+        'task.limit_date as limitDate',
+        'task.creator_user_id as creatorUserId',
+        'task.status',
+        'user.nickname as creatorUserNickname'
+      )
+
+    console.log(result)
+    res.status(200).send({ tasks: result })
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+})
+
 taskRouter.get('/:id', async (req: Request, res: Response) => {
   try {
     const id: string = req.params.id
@@ -30,7 +59,7 @@ taskRouter.get('/:id', async (req: Request, res: Response) => {
       throw new Error('Por favor coloque um id válido')
     }
 
-    const result = await taskTable.where('id', id)
+    const result = await taskTable().where('id', id)
     if (result.length === 0) {
       throw new Error('A tarefa não foi encontrada')
     }
@@ -65,7 +94,7 @@ taskRouter.put('/', async (req: Request, res: Response) => {
       creator_user_id: creatorUserId,
     }
 
-    await taskTable.insert(newTask)
+    await taskTable().insert(newTask)
     res.status(201).send(newTask)
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })
