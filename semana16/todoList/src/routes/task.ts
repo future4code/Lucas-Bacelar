@@ -5,7 +5,6 @@ import connection from '../connection'
 import { dataValida, inputValido, todosValidos } from '../utils/api_helper'
 
 const taskRouter = express.Router()
-const taskTable = () => connection('TodoListTask as task')
 
 type Task = {
   id: string
@@ -15,6 +14,8 @@ type Task = {
   limit_date: string
   creator_user_id: string
 }
+
+const taskTable = () => connection<Task>('TodoListTask as task')
 
 enum STATUS {
   TODO = 'to_do',
@@ -44,7 +45,6 @@ taskRouter.get('/', async (req: Request, res: Response) => {
         'user.nickname as creatorUserNickname'
       )
 
-    console.log(result)
     res.status(200).send({ tasks: result })
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })

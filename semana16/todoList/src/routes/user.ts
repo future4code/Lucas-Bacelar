@@ -12,11 +12,30 @@ type User = {
   email: string
 }
 
-const userTable = connection<User>('TodoListUser')
+const userTable = () => connection<User>('TodoListUser')
 
 userRouter.get('/all', async (req: Request, res: Response) => {
   try {
-    const result = await userTable.select()
+    const result = await userTable().select()
+    res.status(200).send({ users: result })
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+})
+
+userRouter.get('/', async (req: Request, res: Response) => {
+  try {
+    const query: string = String(req.query.query)
+
+    if (!inputValido(query)) {
+      throw new Error('Por favor coloque uma query válida')
+    }
+
+    const result = await userTable()
+      .where('email', 'like', `%${query}%`)
+      .orWhere('nickname', 'like', `%${query}%`)
+      .select('id', 'nickname')
+
     res.status(200).send({ users: result })
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })
@@ -30,7 +49,7 @@ userRouter.get('/:id', async (req: Request, res: Response) => {
       throw new Error('Por favor coloque um id válido')
     }
 
-    const result = await userTable.where('id', id)
+    const result = await userTable().where('id', id)
     if (result.length === 0) {
       throw new Error('O usuário não foi encontrado')
     }
@@ -58,7 +77,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
       email,
     }
 
-    await userTable.insert(newUser)
+    await userTable().insert(newUser)
     res.status(201).send(newUser)
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })
@@ -82,7 +101,7 @@ userRouter.post('/edit/:id', async (req: Request, res: Response) => {
       ...(nickname && { nickname }),
     }
 
-    await userTable.where('id', id).update(editedUser)
+    await userTable().where('id', id).update(editedUser)
     res.status(200).send(editedUser)
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })
