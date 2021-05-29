@@ -78,7 +78,12 @@ async function getTaskById(req: Request, res: Response): Promise<any> {
       throw new Error('A tarefa não foi encontrada')
     }
 
-    res.status(200).send(result[0])
+    const responsibleUsers = await responsibleUserTable()
+      .join('TodoListUser', 'responsible_user_id', '=', 'TodoListUser.id')
+      .select('TodoListUser.id', 'TodoListUser.nickname')
+      .where('task_id', id)
+
+    res.status(200).send({ ...result[0], ...{ responsibleUsers } })
   } catch (error) {
     res.status(400).send({ message: error.sqlMessage || error.message })
   }
