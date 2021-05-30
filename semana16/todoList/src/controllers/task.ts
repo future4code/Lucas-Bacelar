@@ -143,7 +143,7 @@ async function assignTask(req: Request, res: Response): Promise<any> {
   }
 }
 
-async function taskResponsibles(req: Request, res: Response): Promise<any> {
+async function taskResponsibleUsers(req: Request, res: Response): Promise<any> {
   try {
     const id: string = req.params.id
     if (!inputValido(id)) {
@@ -166,10 +166,42 @@ async function taskResponsibles(req: Request, res: Response): Promise<any> {
   }
 }
 
+async function updateTask(req: Request, res: Response): Promise<any> {
+  try {
+    const status = req.body.status
+    const id: string = String(req.body.id)
+
+    if (
+      !inputValido(status) ||
+      !Object.values(STATUS).includes(status as STATUS)
+    ) {
+      throw new Error(
+        "Por favor coloque um status válido e.g 'status': 'doing' ou ('to_do', 'done')"
+      )
+    } else if (!inputValido(id)) {
+      throw new Error('Por favor coloque um id válido')
+    }
+
+    const result = await taskTable().where('id', id)
+    if (result.length === 0) {
+      throw new Error('A tarefa com esse id não foi encontrada')
+    }
+
+    await taskTable().where('id', id).update({
+      status,
+    })
+
+    res.status(200).send({ message: 'Updated' })
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+}
+
 export default {
   getTaskByCreatorId,
   getTaskById,
   createTask,
   assignTask,
-  taskResponsibles,
+  taskResponsibleUsers,
+  updateTask,
 }
