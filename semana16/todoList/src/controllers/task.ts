@@ -35,7 +35,6 @@ const responsibleUserTable = () =>
 async function getTaskByCreatorId(req: Request, res: Response): Promise<any> {
   try {
     const creatorUserId: string = String(req.query.creatorUserId)
-    console.log('userId', creatorUserId)
 
     if (!inputValido(creatorUserId)) {
       throw new Error('Por favor coloque um creatorUserId válido')
@@ -197,6 +196,43 @@ async function updateTask(req: Request, res: Response): Promise<any> {
   }
 }
 
+async function getTaskByStatus(req: Request, res: Response): Promise<any> {
+  try {
+    const status: string = String(req.query.status)
+
+    if (
+      !inputValido(status) ||
+      !Object.values(STATUS).includes(status as STATUS)
+    ) {
+      throw new Error(
+        "Por favor coloque um status válido e.g 'status': 'doing' ou ('to_do', 'done')"
+      )
+    }
+
+    const result = await taskTable()
+      .join(
+        'TodoListUser as user',
+        'TodoListTask.creator_user_id',
+        '=',
+        'user.id'
+      )
+      .where('status', status)
+      .select(
+        'TodoListTask.id as taskId',
+        'TodoListTask.title',
+        'TodoListTask.description',
+        'TodoListTask.limit_date as limitDate',
+        'TodoListTask.creator_user_id as creatorUserId',
+        'TodoListTask.status',
+        'user.nickname as creatorUserNickname'
+      )
+
+    res.status(200).send({ tasks: result })
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+}
+
 export default {
   getTaskByCreatorId,
   getTaskById,
@@ -204,4 +240,5 @@ export default {
   assignTask,
   taskResponsibleUsers,
   updateTask,
+  getTaskByStatus,
 }
