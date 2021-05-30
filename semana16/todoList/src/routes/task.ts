@@ -12,6 +12,8 @@ taskRouter.get('/', (req: Request, res: Response) => {
   }
 })
 
+taskRouter.get('/delayed', Task.getDelayedTasks)
+
 taskRouter.get('/:id', Task.getTaskById)
 taskRouter.get('/:id/responsible', Task.taskResponsibleUsers)
 

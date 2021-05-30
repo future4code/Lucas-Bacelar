@@ -233,6 +233,34 @@ async function getTaskByStatus(req: Request, res: Response): Promise<any> {
   }
 }
 
+async function getDelayedTasks(req: Request, res: Response): Promise<any> {
+  try {
+    const curDate = dayjs().format('YYYY/MM/DD')
+
+    const result = await taskTable()
+      .join(
+        'TodoListUser as user',
+        'TodoListTask.creator_user_id',
+        '=',
+        'user.id'
+      )
+      .where('limit_date', '<', curDate)
+      .select(
+        'TodoListTask.id as taskId',
+        'TodoListTask.title',
+        'TodoListTask.description',
+        'TodoListTask.limit_date as limitDate',
+        'TodoListTask.creator_user_id as creatorUserId',
+        'TodoListTask.status',
+        'user.nickname as creatorUserNickname'
+      )
+
+    res.status(200).send({ tasks: result })
+  } catch (error) {
+    res.status(400).send({ message: error.sqlMessage || error.message })
+  }
+}
+
 export default {
   getTaskByCreatorId,
   getTaskById,
@@ -241,4 +269,5 @@ export default {
   taskResponsibleUsers,
   updateTask,
   getTaskByStatus,
+  getDelayedTasks,
 }
