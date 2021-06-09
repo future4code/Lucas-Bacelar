@@ -3,11 +3,12 @@ import { User } from '../types/User'
 
 const userTable = () => connection('User')
 
-export async function createUser({ id, email, password }: User): Promise<void> {
+export async function createUser({ id, email, password, role }: User): Promise<void> {
   await userTable().insert({
     id,
     email,
     password,
+    role
   })
 }
 
