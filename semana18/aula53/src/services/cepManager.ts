@@ -2,14 +2,15 @@ import axios from 'axios'
 
 const baseUrl = 'https://viacep.com.br/ws'
 
-export type userAddress = {
-  logradouro: string
-  bairro: string
-  cidade: string
-  estado: string
+export type cepInfo = {
+  CEP: string
+  Logradouro: string
+  Bairro: string
+  Cidade: string
+  Estado: string
 }
 
-export async function cepInfo(cep: string): Promise<userAddress | null> {
+export async function cepInfo(cep: string): Promise<cepInfo | null> {
   try {
     const result = await axios
       .get(`${baseUrl}/${cep}/json`)
@@ -19,11 +20,12 @@ export async function cepInfo(cep: string): Promise<userAddress | null> {
       return null
     }
 
-    const address: userAddress = {
-      logradouro: result.logradouro,
-      bairro: result.bairro,
-      cidade: result.localidade,
-      estado: result.uf,
+    const address: cepInfo = {
+      CEP: result.cep,
+      Logradouro: result.logradouro,
+      Bairro: result.bairro,
+      Cidade: result.localidade,
+      Estado: result.uf,
     }
 
     return address

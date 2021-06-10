@@ -1,33 +1,21 @@
 import { Request, Response } from 'express'
 import connection from '../connection'
 import { generateToken } from '../services/authenticator'
-import { cepInfo, userAddress } from '../services/cepManager'
+import { cepInfo } from '../services/cepManager'
 import { hash } from '../services/hashManager'
 import generateId from '../services/idGenerator'
-import { user, userRole } from '../types'
+import { user, userAddress, userRole } from '../types'
 
 export default async function createUser(
   req: Request,
   res: Response
 ): Promise<void> {
   try {
-    const { name, nickname, email, password, role, CEP, numero, complemento } =
-      req.body
+    const { email, password, role, CEP, numero, complemento } = req.body
 
-    if (
-      !name ||
-      !nickname ||
-      !email ||
-      !password ||
-      !role ||
-      !CEP ||
-      !numero ||
-      !complemento
-    ) {
+    if (!email || !password || !role || !CEP || !numero || !complemento) {
       res.statusCode = 422
-      throw new Error(
-        "Preencha os campos 'name','nickname', 'password', 'email' e 'role'"
-      )
+      throw new Error("Preencha os campos 'password', 'email' e 'role'")
     }
 
     if (
@@ -38,14 +26,14 @@ export default async function createUser(
       throw new Error("Os valores possíveis para 'role' são NORMAL e ADMIN")
     }
 
-    const [user] = await connection('to_do_list_users').where({ email })
+    const user = await connection('User').where({ email })
 
-    if (user) {
+    if (!user) {
       res.statusCode = 409
       throw new Error('Email já cadastrado')
     }
 
-    const endereco: userAddress | null = await cepInfo(CEP)
+    const endereco: cepInfo | null = await cepInfo(CEP)
     if (!endereco) {
       res.statusCode = 404
       throw new Error('Digite um CEP válido')
@@ -57,21 +45,31 @@ export default async function createUser(
 
     const newUser: user = {
       id,
-      name,
-      nickname,
       email,
       password: cypherText,
-      role,
+      role: role.toUpperCase(),
     }
 
-    await connection('to_do_list_users').insert(newUser)
+    const newAddress: userAddress = {
+      ...endereco,
+      Numero: numero,
+      Complemento: complemento,
+      User_id: id,
+    }
+
+    await connection('User')
+      .insert(newUser)
+      .then(async () => {
+        console.log('oi')
+        await connection('UserAddress').insert(newAddress)
+      })
 
     const token: string = generateToken({ id, role })
 
     res.status(201).send({ token })
   } catch (error) {
     if (res.statusCode === 200) {
-      res.status(500).send({ message: 'Internal server error' })
+      res.status(500).send({ message: error.SQLmessage || error.message })
     } else {
       res.send({ message: error.message })
     }
