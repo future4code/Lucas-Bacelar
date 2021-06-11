@@ -11,10 +11,7 @@ export function hasAnyEmptyValue(values: Array<any>): boolean {
   for (let value of values) {
     if (!value && typeof value === 'string') {
       return true
-    } else if (
-      typeof value === 'number' &&
-      (value === undefined || value === null)
-    ) {
+    } else if (value === undefined || value === null || !value) {
       return true
     }
   }

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "tsc && node --inspect ./build/index.js",
     "dev-start": "ts-node-dev ./src/index.ts",
-    "commit": "git cz",
+    "commit": "git add . && git cz",
     "release": "standard-version"
   },
   "author": "Labenu",
