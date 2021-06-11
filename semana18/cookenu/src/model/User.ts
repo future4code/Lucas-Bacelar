@@ -14,4 +14,9 @@ export class UserTable {
     const result = await usersTable().where('email', email)
     return result[0]
   }
+
+  static async searchById(id: string): Promise<User | null> {
+    const result = await usersTable().where('id', id)
+    return result[0]
+  }
 }
