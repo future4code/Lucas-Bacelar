@@ -14,4 +14,18 @@ export class RecipeTable {
     const result = await recipesTable().where('id', id)
     return result[0]
   }
+
+  static async getRecipesFeed(): Promise<Array<Recipe>> {
+    const result: Array<Recipe> = await connection('Cookenu_Recipes as recipe')
+      .select(
+        'recipe.id',
+        'recipe.title',
+        'recipe.description',
+        'recipe.creation_date as createdAt',
+        'user.id as userId',
+        'user.name as userName'
+      )
+      .innerJoin('Cookenu_Users as user', 'recipe.creator_id', 'user.id')
+    return result
+  }
 }

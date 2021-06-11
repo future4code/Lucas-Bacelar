@@ -4,4 +4,5 @@ export type Recipe = {
   description: string
   creation_date: string
   creator_id: string
+  userName?: string
 }

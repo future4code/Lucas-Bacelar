@@ -1,9 +1,11 @@
 import { compare } from 'bcryptjs'
 import { NextFunction, Request, Response, Router } from 'express'
 import { FollowedUsersTable } from '../model/FollowedUsers'
+import { RecipeTable } from '../model/Recipe'
 import { UserTable } from '../model/User'
 import { generateToken, validateToken } from '../services/authentication'
-import { FollowUser } from '../types/FollowUser'
+import { Follow, Unfollow } from '../types/FollowUser'
+import { Recipe } from '../types/Recipe'
 import { authenticationData } from '../types/Token'
 import { User } from '../types/User'
 import { errorAPI } from '../utils/errorAPI'
@@ -60,9 +62,9 @@ route.post(
 
 route.post('/follow', async (req: Request, res: Response) => {
   const tokenData: authenticationData = validateToken(req.headers.authorization)
-  const { userToFollowId }: FollowUser = req.body
+  const { userToFollowId }: Follow = req.body
 
-  const followerFollowed: FollowUser = {
+  const followerFollowed: Follow = {
     follower_id: tokenData.id,
     userToFollowId,
   }
@@ -80,6 +82,28 @@ route.post('/follow', async (req: Request, res: Response) => {
   res.status(200).send({ message: 'Followed successfully' })
 })
 
+route.post('/unfollow', async (req: Request, res: Response) => {
+  const tokenData: authenticationData = validateToken(req.headers.authorization)
+  const { userToUnfollowId }: Unfollow = req.body
+
+  const followerUnfollowed: Unfollow = {
+    follower_id: tokenData.id,
+    userToUnfollowId,
+  }
+
+  if (await UserTable.userNotExist(tokenData.id)) {
+    throw errorAPI.notFound('Your user doesnt exist')
+  } else if (await UserTable.userNotExist(userToUnfollowId)) {
+    throw errorAPI.notFound('The user to be followed not exist')
+  } else if (await FollowedUsersTable.isNotFollowed(followerUnfollowed)) {
+    throw errorAPI.badRequest('User is already unfollowed')
+  }
+
+  await FollowedUsersTable.unfollow(followerUnfollowed)
+
+  res.status(200).send({ message: 'Unfollowed successfully' })
+})
+
 route.get('/profile', async (req: Request, res: Response) => {
   const tokenData: authenticationData = validateToken(req.headers.authorization)
 
@@ -92,6 +116,14 @@ route.get('/profile', async (req: Request, res: Response) => {
   const { password, ...your_profile } = user
 
   res.status(200).send({ your_profile })
+})
+
+route.get('/feed', async (req: Request, res: Response) => {
+  validateToken(req.headers.authorization)
+  const recipes: Array<Recipe> = await RecipeTable.getRecipesFeed()
+  console.log(recipes)
+
+  res.status(200).send({ recipes })
 })
 
 route.get('/:id', async (req: Request, res: Response) => {
