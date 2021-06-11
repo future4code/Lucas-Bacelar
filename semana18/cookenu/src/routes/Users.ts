@@ -1,8 +1,9 @@
 import { compare } from 'bcryptjs'
 import { NextFunction, Request, Response, Router } from 'express'
+import { FollowedUsersTable } from '../model/FollowedUsers'
 import { UserTable } from '../model/User'
-import { generateToken, getTokenData } from '../services/authentication'
-import { generateId } from '../services/generateId'
+import { generateToken, validateToken } from '../services/authentication'
+import { FollowUser } from '../types/FollowUser'
 import { authenticationData } from '../types/Token'
 import { User } from '../types/User'
 import { errorAPI } from '../utils/errorAPI'
@@ -23,15 +24,10 @@ route.post('/signup', async (req: Request, res: Response) => {
     throw errorAPI.badRequest('Already registered email')
   }
 
-  const newUser = {
-    id: generateId(),
-    ...validatedUser,
-  }
-
-  await UserTable.create(newUser)
+  await UserTable.create(validatedUser)
 
   const token: string = generateToken({
-    id: newUser.id,
+    id: validatedUser.id,
   })
 
   res.status(201).send({ acess_token: token })
@@ -41,6 +37,7 @@ route.post(
   '/login',
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password }: Omit<User, 'id' | 'name'> = req.body
+
     await validateLoginCredentials({
       email,
       password,
@@ -61,16 +58,33 @@ route.post(
   }
 )
 
-route.get('/profile', async (req: Request, res: Response) => {
-  const token: string = req.headers.authorization as string
+route.post('/follow', async (req: Request, res: Response) => {
+  const tokenData: authenticationData = validateToken(req.headers.authorization)
+  const { userToFollowId }: FollowUser = req.body
 
-  const tokenData: authenticationData | null = getTokenData(token)
-
-  if (!tokenData) {
-    throw errorAPI.unauthorized()
+  const followerFollowed: FollowUser = {
+    follower_id: tokenData.id,
+    userToFollowId,
   }
 
+  if (await UserTable.userNotExist(tokenData.id)) {
+    throw errorAPI.notFound('Your user doesnt exist')
+  } else if (await UserTable.userNotExist(userToFollowId)) {
+    throw errorAPI.notFound('The user to be followed not exist')
+  } else if (await FollowedUsersTable.isFollowed(followerFollowed)) {
+    throw errorAPI.badRequest('User already followed')
+  }
+
+  await FollowedUsersTable.follow(followerFollowed)
+
+  res.status(200).send({ message: 'Followed successfully' })
+})
+
+route.get('/profile', async (req: Request, res: Response) => {
+  const tokenData: authenticationData = validateToken(req.headers.authorization)
+
   const user: User | null = await UserTable.searchById(tokenData.id)
+
   if (!user) {
     throw errorAPI.notFound('User not found')
   }
@@ -81,14 +95,9 @@ route.get('/profile', async (req: Request, res: Response) => {
 })
 
 route.get('/:id', async (req: Request, res: Response) => {
-  const token: string = req.headers.authorization as string
   const userId: string = req.params.id as string
 
-  const tokenData: authenticationData | null = getTokenData(token)
-
-  if (!tokenData) {
-    throw errorAPI.unauthorized()
-  }
+  validateToken(req.headers.authorization)
 
   const user: User | null = await UserTable.searchById(userId)
   if (!user) {

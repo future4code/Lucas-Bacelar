@@ -1,4 +1,5 @@
 import connection from '../../connection'
+import { generateId } from '../../services/generateId'
 import { hash } from '../../services/hashManager'
 import { User } from '../../types/User'
 import { errorAPI } from '../../utils/errorAPI'
@@ -12,7 +13,7 @@ export async function validateUserSignup({
   name,
   email,
   password,
-}: Omit<User, 'id'>): Promise<Omit<User, 'id'>> {
+}: Omit<User, 'id'>): Promise<User> {
   if (hasAnyEmptyValue([name, email, password])) {
     throw errorAPI.wrongParams(
       'Please fill all the fields: name, email, password'
@@ -25,6 +26,7 @@ export async function validateUserSignup({
     )
   }
   return {
+    id: generateId(),
     name,
     email,
     password: await hash(password),

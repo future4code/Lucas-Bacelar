@@ -19,4 +19,12 @@ export class UserTable {
     const result = await usersTable().where('id', id)
     return result[0]
   }
+
+  static async userNotExist(id: string) {
+    const result = await UserTable.searchById(id)
+    if (!result) {
+      return true
+    }
+    return false
+  }
 }
