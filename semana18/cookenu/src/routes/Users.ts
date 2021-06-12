@@ -19,8 +19,13 @@ require('express-async-errors')
 const route = Router()
 
 route.post('/signup', async (req: Request, res: Response) => {
-  const { name, email, password }: Omit<User, 'id'> = req.body
-  const validatedUser = await validateUserSignup({ name, email, password })
+  const { name, email, password, role }: Omit<User, 'id'> = req.body
+  const validatedUser = await validateUserSignup({
+    name,
+    email,
+    password,
+    role,
+  })
 
   if (await emailExist(email)) {
     throw errorAPI.badRequest('Already registered email')
@@ -30,6 +35,7 @@ route.post('/signup', async (req: Request, res: Response) => {
 
   const token: string = generateToken({
     id: validatedUser.id,
+    role: validatedUser.role,
   })
 
   res.status(201).send({ acess_token: token })
@@ -38,7 +44,7 @@ route.post('/signup', async (req: Request, res: Response) => {
 route.post(
   '/login',
   async (req: Request, res: Response, next: NextFunction) => {
-    const { email, password }: Omit<User, 'id' | 'name'> = req.body
+    const { email, password }: User = req.body
 
     await validateLoginCredentials({
       email,
@@ -54,6 +60,7 @@ route.post(
 
     const token: string = generateToken({
       id: user.id,
+      role: user.role,
     })
 
     res.status(200).send({ acess_token: token })
@@ -127,9 +134,9 @@ route.get('/feed', async (req: Request, res: Response) => {
 })
 
 route.get('/:id', async (req: Request, res: Response) => {
-  const userId: string = req.params.id as string
-
   validateToken(req.headers.authorization)
+
+  const userId: string = req.params.id as string
 
   const user: User | null = await UserTable.searchById(userId)
   if (!user) {
