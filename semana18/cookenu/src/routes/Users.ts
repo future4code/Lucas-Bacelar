@@ -13,7 +13,7 @@ import {
   emailExist,
   validateLoginCredentials,
   validateUserSignup,
-} from '../utils/validators/userValidation'
+} from '../validators/userValidation'
 require('express-async-errors')
 
 const route = Router()

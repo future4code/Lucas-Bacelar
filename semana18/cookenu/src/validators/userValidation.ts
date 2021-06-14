@@ -1,8 +1,8 @@
-import connection from '../../connection'
-import { generateId } from '../../services/generateId'
-import { hash } from '../../services/hashManager'
-import { User, USER_ROLES } from '../../types/User'
-import { errorAPI } from '../../utils/errorAPI'
+import connection from '../connection'
+import { generateId } from '../services/generateId'
+import { hash } from '../services/hashManager'
+import { User, USER_ROLES } from '../types/User'
+import { errorAPI } from '../utils/errorAPI'
 import {
   hasAnyEmptyValue,
   isInvalidEmail,

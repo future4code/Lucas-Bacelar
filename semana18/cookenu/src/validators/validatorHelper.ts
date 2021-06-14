@@ -17,3 +17,12 @@ export function hasAnyEmptyValue(values: Array<any>): boolean {
   }
   return false
 }
+
+export function notStringValues(values: Array<any>): boolean {
+  for (let value of values) {
+    if (typeof value !== 'string') {
+      return true
+    }
+  }
+  return false
+}

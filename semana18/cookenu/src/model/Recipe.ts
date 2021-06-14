@@ -28,4 +28,12 @@ export class RecipeTable {
       .innerJoin('Cookenu_Users as user', 'recipe.creator_id', 'user.id')
     return result
   }
+
+  static async updateRecipe({
+    id,
+    title,
+    description,
+  }: Omit<Recipe, 'creation_date' | 'creator_id'>): Promise<void> {
+    await recipesTable().update({ title, description }).where({ id })
+  }
 }
