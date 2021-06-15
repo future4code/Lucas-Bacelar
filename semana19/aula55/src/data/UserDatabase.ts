@@ -14,6 +14,14 @@ export default class UserDB {
     }
   }
 
+  static async getAllUsers(): Promise<Array<User>> {
+    try {
+      return await connection('User_Arq')
+    } catch (err) {
+      throw new Error('Falha inesperada no banco de dados')
+    }
+  }
+
   static async searchByEmail(email: string): Promise<User> {
     try {
       const result = await connection('User_Arq').where('email', email)
@@ -21,6 +29,14 @@ export default class UserDB {
         throw new Error('Usuário não encontrado')
       }
       return result[0]
+    } catch (err) {
+      throw new Error('Falha inesperada no banco de dados')
+    }
+  }
+
+  static async deleteById(id: string): Promise<void> {
+    try {
+      await connection('User_Arq').where('id', id).delete()
     } catch (err) {
       throw new Error('Falha inesperada no banco de dados')
     }

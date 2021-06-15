@@ -1,6 +1,12 @@
 import UserDB from '../data/UserDatabase'
-import { User, UserData, UserLogin, USER_ROLES } from '../models/User'
-import { generateToken } from '../services/authenticator'
+import {
+  DeleteInput,
+  User,
+  UserData,
+  UserLogin,
+  USER_ROLES,
+} from '../models/User'
+import { generateToken, validateToken } from '../services/authenticator'
 import { compare, hash } from '../services/hashManager'
 import { generateId } from '../services/idGenerator'
 
@@ -64,7 +70,37 @@ export async function loginUser(login: UserLogin) {
   } catch (error) {
     throw new Error(
       error.message ||
-        'Error creating user. Please check your system administrator.'
+        'Error in login user. Please check your system administrator.'
+    )
+  }
+}
+
+export async function getAllUsers(token: string) {
+  try {
+    validateToken(token)
+    const users = await UserDB.getAllUsers()
+
+    return users
+  } catch (error) {
+    throw new Error(
+      error.message ||
+        'Error in getting users. Please check your system administrator.'
+    )
+  }
+}
+
+export async function deleteUser({ id, token }: DeleteInput) {
+  try {
+    const tokenData = validateToken(token)
+    if (tokenData.role !== USER_ROLES.ADMIN) {
+      throw new Error('Unauthorized')
+    }
+
+    await UserDB.deleteById(id)
+  } catch (error) {
+    throw new Error(
+      error.message ||
+        'Error in deleting user. Please check your system administrator.'
     )
   }
 }

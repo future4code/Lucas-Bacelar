@@ -14,3 +14,8 @@ export type User = {
 export type UserData = Omit<User, 'id'>
 
 export type UserLogin = Omit<UserData, 'name' | 'role'>
+
+export type DeleteInput = {
+  id: string
+  token: string
+}
