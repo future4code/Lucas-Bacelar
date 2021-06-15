@@ -1,20 +1,17 @@
-import { Request, Response } from "express";
-import { getTaskByIdBusiness } from "../../business/task/getTaskByIdBusiness";
-import {selectTaskById} from "../../data/task/selectTaskById";
+import { Request, Response } from 'express'
+import { getTaskByIdBusiness } from '../../business/task/getTaskByIdBusiness'
+import { getTaskInputDTO, getTaskOutputDTO } from '../../model/task'
 
-export const getTaskById = async (
-   req: Request,
-   res: Response
-) => {
-   try {
+export const getTaskById = async (req: Request, res: Response) => {
+  try {
+    const getTaskInput: getTaskInputDTO = {
+      id: req.body.id,
+    }
 
-      const { id } = req.params
+    const task: getTaskOutputDTO = await getTaskByIdBusiness(getTaskInput)
 
-      const task = getTaskByIdBusiness(id)
-
-      res.status(200).send(task)
-
-   } catch (error) {
-      res.status(400).send(error.message)
-   }
+    res.status(200).send(task)
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
 }

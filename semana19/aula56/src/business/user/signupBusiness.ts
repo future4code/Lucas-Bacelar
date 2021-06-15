@@ -1,5 +1,5 @@
 import { insertUser } from '../../data/user/insertUser'
-import { signupInputDto } from '../../model/user'
+import { insertUserDto, signupInputDto } from '../../model/user'
 import { generateToken } from '../../services/authenticator'
 import { hash } from '../../services/hashManager'
 import { generateId } from '../../services/idGenerator'
@@ -21,7 +21,7 @@ export const signupBusiness = async (
 
   const cypherPassword = await hash(userData.password)
 
-  const newUser = {
+  const newUser: insertUserDto = {
     ...userData,
     password: cypherPassword,
     id: generateId(),

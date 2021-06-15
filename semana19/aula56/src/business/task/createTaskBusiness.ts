@@ -1,5 +1,5 @@
 import { insertTask } from '../../data/task/insertTask'
-import { createTaskInputDTO } from '../../model/task'
+import { createTaskInputDTO, task } from '../../model/task'
 import { generateId } from '../../services/idGenerator'
 
 export const createTaskBusiness = async (taskData: createTaskInputDTO) => {
@@ -14,10 +14,10 @@ export const createTaskBusiness = async (taskData: createTaskInputDTO) => {
     )
   }
 
-  const id: string = generateId()
-
-  await insertTask({
-    id,
+  const newTask: task = {
+    id: generateId(),
     ...taskData,
-  })
+  }
+
+  await insertTask(newTask)
 }

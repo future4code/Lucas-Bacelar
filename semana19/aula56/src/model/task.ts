@@ -12,4 +12,18 @@ export type createTaskInputDTO = {
   authorId: any
 }
 
+export type getTaskInputDTO = {
+  id: string
+}
+
+export type getTaskOutputDTO = {
+  id: string
+  title: string
+  description: string
+  deadline: string
+  status: string
+  authorId: string
+  authorNickname: string
+}
+
 export type task = taskData & { id: string }
