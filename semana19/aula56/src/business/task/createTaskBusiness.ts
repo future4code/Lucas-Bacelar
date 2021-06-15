@@ -1,24 +1,23 @@
-import { insertTask } from "../../data/task/insertTask";
-import { taskData } from "../../model/task";
-import { generateId } from "../../services/idGenerator";
+import { insertTask } from '../../data/task/insertTask'
+import { createTaskInputDTO } from '../../model/task'
+import { generateId } from '../../services/idGenerator'
 
-export const createTaskBusiness = async (
-   taskData: taskData
-) => {
+export const createTaskBusiness = async (taskData: createTaskInputDTO) => {
+  if (
+    !taskData.title ||
+    !taskData.description ||
+    !taskData.deadline ||
+    !taskData.authorId
+  ) {
+    throw new Error(
+      '"title", "description", "deadline" e "authorId" são obrigatórios'
+    )
+  }
 
-   if (
-      !taskData.title ||
-      !taskData.description ||
-      !taskData.deadline ||
-      !taskData.authorId
-   ) {
-      throw new Error('"title", "description", "deadline" e "authorId" são obrigatórios')
-   }
+  const id: string = generateId()
 
-   const id: string = generateId()
-
-   await insertTask({
-      id,
-      ...taskData
-   })
+  await insertTask({
+    id,
+    ...taskData,
+  })
 }
