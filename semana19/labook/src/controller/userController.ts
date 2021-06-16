@@ -1,33 +1,42 @@
-import { UserTable } from '../data/UserTable'
-import { signupInputDTO, signupOutputDTO, user } from '../model/UserModel'
-import { Authentication } from '../services/authentication'
-import { errorAPI } from '../services/errorAPI'
-import { generateId } from '../services/generateId'
-import { HashManager } from '../services/hashManager'
+import { NextFunction, Request, Response } from 'express'
+import * as userBusiness from '../business/userBusiness'
+import {
+  loginInputDTO,
+  loginOutputDTO,
+  signupInputDTO,
+  signupOutputDTO,
+} from '../model/UserModel'
 
-export async function createUser(
-  input: signupInputDTO
-): Promise<signupOutputDTO> {
-  let message = 'Success!'
-  const { name, email, password } = input
+export async function signup(req: Request, res: Response, next: NextFunction) {
+  try {
+    const signupInput: signupInputDTO = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    }
 
-  if (!name || !email || !password) {
-    message = '"name", "email" and "password" must be provided'
-    throw errorAPI.wrongParams(message)
+    const { message, token }: signupOutputDTO = await userBusiness.createUser(
+      signupInput
+    )
+
+    res.status(201).send({ message, token })
+  } catch (error) {
+    next(error)
   }
-
-  const newUser: user = {
-    id: generateId(),
-    name,
-    email,
-    password: await HashManager.hash(password),
-  }
-
-  await UserTable.createUser(newUser)
-
-  const token: string = Authentication.generateToken({ id: newUser.id })
-
-  return { token, message }
 }
 
-async function authenticateUser() {}
+export async function login(req: Request, res: Response, next: NextFunction) {
+  try {
+    const loginInput: loginInputDTO = {
+      email: req.body.email,
+      password: req.body.password,
+    }
+
+    const { message, token }: loginOutputDTO =
+      await userBusiness.authenticateUser(loginInput)
+
+    res.status(200).send({ message, token })
+  } catch (error) {
+    next(error)
+  }
+}

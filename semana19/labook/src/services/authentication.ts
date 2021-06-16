@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import * as jwt from 'jsonwebtoken'
 import { authenticationData } from '../model/TokenModel'
+import { errorAPI } from './errorAPI'
 
 dotenv.config()
 
@@ -15,7 +16,11 @@ export class Authentication {
   }
 
   static getTokenData(token: string): authenticationData {
-    const result: any = jwt.verify(token, this.JWT_KEY)
-    return { id: result.id }
+    try {
+      const result: any = jwt.verify(token, this.JWT_KEY)
+      return { id: result.id }
+    } catch (error) {
+      throw errorAPI.unauthorized(error.message)
+    }
   }
 }

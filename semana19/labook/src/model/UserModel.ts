@@ -15,3 +15,7 @@ export type signupOutputDTO = {
   token: string
   message: string
 }
+
+export type loginInputDTO = Omit<signupInputDTO, 'name'>
+
+export type loginOutputDTO = signupOutputDTO

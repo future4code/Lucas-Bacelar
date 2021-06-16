@@ -11,8 +11,8 @@ export class errorAPI {
     return new errorAPI(406, message)
   }
 
-  static unauthorized() {
-    return new errorAPI(401, 'Unauthorized')
+  static unauthorized(message: string = 'Unauthorized') {
+    return new errorAPI(401, message)
   }
 
   static badRequest(message: string) {

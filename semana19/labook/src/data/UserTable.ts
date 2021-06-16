@@ -14,4 +14,11 @@ export class UserTable {
       }
     }
   }
+
+  static async getUserByEmail(email: string): Promise<Array<user>> {
+    const result: Array<user> = await connection('labook_users').where({
+      email,
+    })
+    return result
+  }
 }
