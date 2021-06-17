@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { errorAPI } from './errorAPI'
+import { errorAPI } from './ErrorAPI'
 
 export const errorHandler = (
   error: Error,

@@ -1,4 +1,4 @@
-import { connection } from './data/connection'
+import { connection } from './repositories/connection'
 
 connection
   .raw(
