@@ -17,8 +17,16 @@ connection
          type ENUM("normal","event") DEFAULT "normal",
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
          author_id VARCHAR(255),
-         FOREIGN KEY (author_id) REFERENCES labook_users (id)
-      )
+         FOREIGN KEY (author_id) REFERENCES labook_users (id) ON DELETE CASCADE ON UPDATE CASCADE
+      );
+
+      CREATE TABLE labook_friendship(
+         user_id VARCHAR(255) NOT NULL,
+          friend_id VARCHAR(255) NOT NULL,
+          PRIMARY KEY(user_id, friend_id),
+          FOREIGN KEY (user_id) REFERENCES labook_users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+          FOREIGN KEY (friend_id) REFERENCES labook_users(id) ON DELETE CASCADE ON UPDATE CASCADE
+      );
    `
   )
   .then(console.log)

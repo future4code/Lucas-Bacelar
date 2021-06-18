@@ -2,7 +2,7 @@
 
 import cors from 'cors'
 import express, { Express } from 'express'
-import { postRoute, userRoute } from './routes'
+import { friendshipRoute, postRoute, userRoute } from './routes'
 import { errorHandler } from './services/middleware'
 
 const app: Express = express()
@@ -11,6 +11,7 @@ app.use(cors())
 
 app.use('/users', userRoute)
 app.use('/posts', postRoute)
+app.use('/friendships', friendshipRoute)
 app.use(errorHandler)
 
 app.listen(3003, () => {
