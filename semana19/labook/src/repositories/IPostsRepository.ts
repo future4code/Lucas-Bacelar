@@ -4,5 +4,5 @@ import { User } from '../entities/User'
 export interface IPostsRepository {
   find(id: string): Promise<Post>
   save(user: Post): Promise<void>
-  userFeed(user: User, order?: string): Promise<Array<Post>>
+  userFeed(user: User, type: string, order?: string): Promise<Array<Post>>
 }

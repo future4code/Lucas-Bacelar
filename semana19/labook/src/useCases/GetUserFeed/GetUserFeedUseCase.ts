@@ -23,7 +23,7 @@ export class GetUserFeedUseCase {
       throw errorAPI.badRequest("This user doesn't exist")
     }
 
-    const posts = await this.postsRepository.userFeed(user)
+    const posts = await this.postsRepository.userFeed(user, data.type)
 
     return { message: 'Success', posts }
   }

@@ -23,7 +23,11 @@ export class MySqlPostsRepository
     await this.postTable().insert(post)
   }
 
-  async userFeed(user: User, order?: string): Promise<Array<Post>> {
+  async userFeed(
+    user: User,
+    type: string,
+    order?: string
+  ): Promise<Array<Post>> {
     const friendshipTable = () =>
       DatabaseConnection.connection('labook_friendship')
 
@@ -38,7 +42,7 @@ export class MySqlPostsRepository
     const result: Array<Post> = await this.postTable()
       .whereIn('author_id', userIdFriendsQuery)
       .orWhereIn('author_id', friendIdFriendsQuery)
-      .orWhere('author_id', user.id)
+      .andWhere('type', type)
       .orderBy('created_at', order || 'desc')
     return result
   }

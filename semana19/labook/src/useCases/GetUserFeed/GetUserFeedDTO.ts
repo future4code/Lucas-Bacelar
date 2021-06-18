@@ -2,6 +2,7 @@ import { Post } from '../../entities/Post'
 
 export interface IGetUserFeedRequestDTO {
   token: any
+  type: any
 }
 
 export interface IGetUserFeedResponseDTO {
