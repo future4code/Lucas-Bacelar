@@ -3,15 +3,15 @@ import { IFriendshipsRepository } from '../../repositories/IFriendshipsRepositor
 import { Authentication } from '../../services/Authentication'
 import { errorAPI } from '../../services/ErrorAPI'
 import {
-  IMakeFriendshipRequestDTO,
-  IMakeFriendshipResponseDTO,
-} from './MakeFriendshipDTO'
+  IUnmakeFriendshipRequestDTO,
+  IUnmakeFriendshipResponseDTO,
+} from './UnmakeFriendshipDTO'
 
-export class MakeFriendshipUseCase {
+export class UnmakeFriendshipUseCase {
   constructor(private friendshipsRepository: IFriendshipsRepository) {}
   async execute(
-    data: IMakeFriendshipRequestDTO
-  ): Promise<IMakeFriendshipResponseDTO> {
+    data: IUnmakeFriendshipRequestDTO
+  ): Promise<IUnmakeFriendshipResponseDTO> {
     const { token, friend_id } = data
     const tokenData = Authentication.getTokenData(token)
 
@@ -20,12 +20,14 @@ export class MakeFriendshipUseCase {
       friend_id,
     })
 
-    const isAlreadyFriend = await this.friendshipsRepository.find(friendship)
-    if (isAlreadyFriend) {
-      throw errorAPI.badRequest('You are already this user friend')
+    const isNotFriend = (await this.friendshipsRepository.find(friendship))
+      ? false
+      : true
+    if (isNotFriend) {
+      throw errorAPI.badRequest("You aren't this user friend")
     }
 
-    await this.friendshipsRepository.befriend(friendship)
+    await this.friendshipsRepository.unfriend(friendship)
 
     return { message: 'Success' }
   }

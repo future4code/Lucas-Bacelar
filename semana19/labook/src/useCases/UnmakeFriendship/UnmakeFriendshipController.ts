@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
-import { MakeFriendshipUseCase } from './MakeFriendshipUseCase'
+import { UnmakeFriendshipUseCase } from './UnmakeFriendshipUseCase'
 
-export class MakeFriendshipController {
-  constructor(private MakeFriendshipUseCase: MakeFriendshipUseCase) {}
+export class UnmakeFriendshipController {
+  constructor(private UnmakeFriendshipUseCase: UnmakeFriendshipUseCase) {}
   async handle(
     req: Request,
     res: Response,
@@ -12,7 +12,7 @@ export class MakeFriendshipController {
     const token = req.headers.authorization
 
     try {
-      const response = await this.MakeFriendshipUseCase.execute({
+      const response = await this.UnmakeFriendshipUseCase.execute({
         friend_id,
         token,
       })

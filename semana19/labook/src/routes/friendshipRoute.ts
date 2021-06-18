@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { createPostController } from '../useCases/CreatePost'
 import { makeFriendshipController } from '../useCases/MakeFriendship'
+import { unmakeFriendshipController } from '../useCases/UnmakeFriendship'
 
 const friendshipRouter = Router()
 
-friendshipRouter.post(
+friendshipRouter.put(
   '/make',
   (req: Request, res: Response, next: NextFunction) => {
     return makeFriendshipController.handle(req, res, next)
@@ -14,7 +14,7 @@ friendshipRouter.post(
 friendshipRouter.delete(
   '/unmake',
   (req: Request, res: Response, next: NextFunction) => {
-    return createPostController.handle(req, res, next)
+    return unmakeFriendshipController.handle(req, res, next)
   }
 )
 
