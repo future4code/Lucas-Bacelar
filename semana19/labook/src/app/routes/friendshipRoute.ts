@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { makeFriendshipController } from '../useCases/MakeFriendship'
-import { unmakeFriendshipController } from '../useCases/UnmakeFriendship'
+import { makeFriendshipController } from '../useCases/Friendship/MakeFriendship'
+import { unmakeFriendshipController } from '../useCases/Friendship/UnmakeFriendship'
 
 const friendshipRouter = Router()
 

@@ -1,5 +1,5 @@
 import { generateId } from '../services/generateId'
-
+import { POST_TYPES } from '../types/Post'
 export class Post {
   public readonly id!: string
   public readonly author_id!: string
@@ -7,7 +7,7 @@ export class Post {
 
   public photo!: string
   public description!: string
-  public type!: string
+  public type!: POST_TYPES
 
   constructor(
     props: Omit<Post, 'id' | 'created_at'>,

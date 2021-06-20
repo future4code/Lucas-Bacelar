@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { commentPostController } from '../useCases/CommentPost'
-import { createPostController } from '../useCases/CreatePost'
-import { findPostController } from '../useCases/FindPost'
-import { likePostController } from '../useCases/LikePost'
-import { unlikePostController } from '../useCases/UnlikePost'
+import { commentPostController } from '../useCases/Comment/CommentPost'
+import { likePostController } from '../useCases/Likes/LikePost'
+import { unlikePostController } from '../useCases/Likes/UnlikePost'
+import { createPostController } from '../useCases/Post/CreatePost'
+import { findPostController } from '../useCases/Post/FindPost'
 
 const postRouter = Router()
 

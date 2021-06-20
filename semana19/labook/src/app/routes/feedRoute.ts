@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { getUserFeedController } from '../useCases/GetUserFeed'
+import { getUserFeedController } from '../useCases/User/GetUserFeed'
 
 const feedRouter = Router()
 

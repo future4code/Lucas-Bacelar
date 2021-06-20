@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { authenticateUserController } from '../useCases/AuthenticateUser'
-import { createUserController } from '../useCases/CreateUser'
+import { authenticateUserController } from '../useCases/User/AuthenticateUser'
+import { createUserController } from '../useCases/User/CreateUser'
 
 const userRouter = Router()
 
