@@ -5,13 +5,17 @@ import {
   ICommentPostRequestDTO,
   ICommentPostResponseDTO,
 } from './CommentPostDTO'
+import { CommentPostValidator } from './CommentPostValidator'
 
 export class CommentPostUseCase {
-  constructor(private commentsRepository: ICommentsRepository) {}
+  constructor(
+    private commentsRepository: ICommentsRepository,
+    private validator: CommentPostValidator
+  ) {}
   async execute(
     data: ICommentPostRequestDTO
   ): Promise<ICommentPostResponseDTO> {
-    const { token, post_id, description } = data
+    const { token, post_id, description } = this.validator.validate(data)
     const tokenData = Authentication.getTokenData(token)
 
     const comment = new Comment({

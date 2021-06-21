@@ -6,25 +6,27 @@ import {
   IGetUserFeedRequestDTO,
   IGetUserFeedResponseDTO,
 } from './GetUserFeedDTO'
+import { GetUserFeedValidator } from './GetUserFeedValidator'
 
 export class GetUserFeedUseCase {
   constructor(
     private postsRepository: IPostsRepository,
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    private validator: GetUserFeedValidator
   ) {}
   async execute(
     data: IGetUserFeedRequestDTO
   ): Promise<IGetUserFeedResponseDTO> {
-    const tokenData = Authentication.getTokenData(data.token)
-    const page = Number(data.page)
+    const { token, type, page } = this.validator.validate(data)
+    const tokenData = Authentication.getTokenData(token)
 
     const user = await this.usersRepository.find(tokenData.id)
 
     if (!user) {
-      throw errorAPI.badRequest("This user doesn't exist")
+      throw errorAPI.unauthorized('Unauthorized')
     }
 
-    const posts = await this.postsRepository.userFeed(user, data.type, page)
+    const posts = await this.postsRepository.userFeed(user, type, page)
 
     return { message: 'Success', posts }
   }

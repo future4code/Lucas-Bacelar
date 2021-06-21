@@ -6,13 +6,17 @@ import {
   IMakeFriendshipRequestDTO,
   IMakeFriendshipResponseDTO,
 } from './MakeFriendshipDTO'
+import { MakeFriendshipValidator } from './MakeFriendshipValidator'
 
 export class MakeFriendshipUseCase {
-  constructor(private friendshipsRepository: IFriendshipsRepository) {}
+  constructor(
+    private friendshipsRepository: IFriendshipsRepository,
+    private validator: MakeFriendshipValidator
+  ) {}
   async execute(
     data: IMakeFriendshipRequestDTO
   ): Promise<IMakeFriendshipResponseDTO> {
-    const { token, friend_id } = data
+    const { token, friend_id } = this.validator.validate(data)
     const tokenData = Authentication.getTokenData(token)
 
     const friendship = new Friendship({

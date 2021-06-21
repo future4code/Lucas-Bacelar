@@ -3,6 +3,11 @@ export interface IUnlikePostRequestDTO {
   post_id: any
 }
 
+export interface IUnlikePostValidDataDTO {
+  token: string
+  post_id: string
+}
+
 export interface IUnlikePostResponseDTO {
   message: string
 }

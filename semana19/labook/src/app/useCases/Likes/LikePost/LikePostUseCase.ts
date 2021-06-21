@@ -3,11 +3,15 @@ import { ILikesRepository } from '../../../repositories/ILikesRepository'
 import { Authentication } from '../../../services/Authentication'
 import { errorAPI } from '../../../services/ErrorAPI'
 import { ILikePostRequestDTO, ILikePostResponseDTO } from './LikePostDTO'
+import { LikePostValidator } from './LikePostValidator'
 
 export class LikePostUseCase {
-  constructor(private likesRepository: ILikesRepository) {}
+  constructor(
+    private likesRepository: ILikesRepository,
+    private validator: LikePostValidator
+  ) {}
   async execute(data: ILikePostRequestDTO): Promise<ILikePostResponseDTO> {
-    const { token, post_id } = data
+    const { token, post_id } = this.validator.validate(data)
     const tokenData = Authentication.getTokenData(token)
 
     const like = new Like({

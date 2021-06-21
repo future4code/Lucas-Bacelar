@@ -1,11 +1,14 @@
 import { MySqlFriendshipsRepository } from '../../../repositories/implementations/MySqlFriendshipsRepository'
 import { UnmakeFriendshipController } from './UnmakeFriendshipController'
 import { UnmakeFriendshipUseCase } from './UnmakeFriendshipUseCase'
+import { UnmakeFriendshipValidator } from './UnmakeFriendshipValidator'
 
 const mysqlFriendshipsRepository = new MySqlFriendshipsRepository()
+const unmakeFriendshipValidator = new UnmakeFriendshipValidator()
 
 const unmakeFriendshipsUseCase = new UnmakeFriendshipUseCase(
-  mysqlFriendshipsRepository
+  mysqlFriendshipsRepository,
+  unmakeFriendshipValidator
 )
 
 const unmakeFriendshipController = new UnmakeFriendshipController(

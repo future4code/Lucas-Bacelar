@@ -37,12 +37,13 @@ export class MySqlPostsRepository
       .select('user_id')
 
     const result: Array<Post> = await this.postTable()
+      .where('type', type)
       .whereIn('author_id', userIdFriendsQuery)
       .orWhereIn('author_id', friendIdFriendsQuery)
-      .andWhere('type', type)
       .limit(offset)
       .offset(offset * (page - 1))
       .orderBy('created_at', 'desc')
+
     return result
   }
 }

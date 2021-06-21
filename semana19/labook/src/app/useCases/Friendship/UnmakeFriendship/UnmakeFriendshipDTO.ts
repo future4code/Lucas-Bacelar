@@ -3,6 +3,11 @@ export interface IUnmakeFriendshipRequestDTO {
   friend_id: any
 }
 
+export interface IUnmakeFriendshipValidDataDTO {
+  token: string
+  friend_id: string
+}
+
 export interface IUnmakeFriendshipResponseDTO {
   message: string
 }

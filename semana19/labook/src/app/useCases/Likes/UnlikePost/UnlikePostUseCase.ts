@@ -3,11 +3,15 @@ import { ILikesRepository } from '../../../repositories/ILikesRepository'
 import { Authentication } from '../../../services/Authentication'
 import { errorAPI } from '../../../services/ErrorAPI'
 import { IUnlikePostRequestDTO, IUnlikePostResponseDTO } from './UnlikePostDTO'
+import { UnlikePostValidator } from './UnlikePostValidator'
 
 export class UnlikePostUseCase {
-  constructor(private likesRepository: ILikesRepository) {}
+  constructor(
+    private likesRepository: ILikesRepository,
+    private validator: UnlikePostValidator
+  ) {}
   async execute(data: IUnlikePostRequestDTO): Promise<IUnlikePostResponseDTO> {
-    const { token, post_id } = data
+    const { token, post_id } = this.validator.validate(data)
     const tokenData = Authentication.getTokenData(token)
 
     const like = new Like({

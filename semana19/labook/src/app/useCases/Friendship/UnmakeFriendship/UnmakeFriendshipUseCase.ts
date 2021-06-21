@@ -6,13 +6,17 @@ import {
   IUnmakeFriendshipRequestDTO,
   IUnmakeFriendshipResponseDTO,
 } from './UnmakeFriendshipDTO'
+import { UnmakeFriendshipValidator } from './UnmakeFriendshipValidator'
 
 export class UnmakeFriendshipUseCase {
-  constructor(private friendshipsRepository: IFriendshipsRepository) {}
+  constructor(
+    private friendshipsRepository: IFriendshipsRepository,
+    private validator: UnmakeFriendshipValidator
+  ) {}
   async execute(
     data: IUnmakeFriendshipRequestDTO
   ): Promise<IUnmakeFriendshipResponseDTO> {
-    const { token, friend_id } = data
+    const { token, friend_id } = this.validator.validate(data)
     const tokenData = Authentication.getTokenData(token)
 
     const friendship = new Friendship({
