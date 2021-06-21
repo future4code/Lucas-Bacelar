@@ -17,7 +17,7 @@ export class UnmakeFriendshipController {
         token,
       })
 
-      return res.status(201).send(response)
+      return res.status(204).send(response)
     } catch (err) {
       next(err)
     }
