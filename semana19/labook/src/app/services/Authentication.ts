@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import * as jwt from 'jsonwebtoken'
 import { authenticationData } from '../types/authenticationData'
-import { errorAPI } from './ErrorAPI'
+import { errorAPI } from './APIError'
 
 dotenv.config()
 

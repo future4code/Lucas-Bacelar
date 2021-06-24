@@ -4,6 +4,10 @@ class DatabaseMigrator extends DatabaseConnection {
   async connect(sql: string) {
     DatabaseConnection.connection(sql)
   }
+
+  async destroy() {
+    DatabaseConnection.destroy()
+  }
 }
 
 const migrator = new DatabaseMigrator()
@@ -56,9 +60,9 @@ migrator
   )
   .then(() => {
     console.log('Successful Migration!')
-    process.exit()
+    migrator.destroy()
   })
   .catch((error) => {
     console.log('A error ocurred:', error.sqlMessage || error.message)
-    process.exit()
+    migrator.destroy()
   })

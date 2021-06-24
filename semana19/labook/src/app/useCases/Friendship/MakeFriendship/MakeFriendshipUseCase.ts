@@ -1,7 +1,7 @@
 import { Friendship } from '../../../entities/Friendship'
 import { IFriendshipsRepository } from '../../../repositories/IFriendshipsRepository'
+import { errorAPI } from '../../../services/APIError'
 import { Authentication } from '../../../services/Authentication'
-import { errorAPI } from '../../../services/ErrorAPI'
 import {
   IMakeFriendshipRequestDTO,
   IMakeFriendshipResponseDTO,

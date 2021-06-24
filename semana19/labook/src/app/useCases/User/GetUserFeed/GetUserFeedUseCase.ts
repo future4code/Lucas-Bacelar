@@ -1,7 +1,7 @@
 import { IPostsRepository } from '../../../repositories/IPostsRepository'
 import { IUsersRepository } from '../../../repositories/IUsersRepository'
+import { errorAPI } from '../../../services/APIError'
 import { Authentication } from '../../../services/Authentication'
-import { errorAPI } from '../../../services/ErrorAPI'
 import {
   IGetUserFeedRequestDTO,
   IGetUserFeedResponseDTO,

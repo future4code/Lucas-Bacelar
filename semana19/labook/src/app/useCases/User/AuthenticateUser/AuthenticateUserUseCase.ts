@@ -1,7 +1,7 @@
 import { User } from '../../../entities/User'
 import { IUsersRepository } from '../../../repositories/IUsersRepository'
+import { errorAPI } from '../../../services/APIError'
 import { Authentication } from '../../../services/Authentication'
-import { errorAPI } from '../../../services/ErrorAPI'
 import { HashManager } from '../../../services/HashManager'
 import {
   IAuthenticateUserRequestDTO,

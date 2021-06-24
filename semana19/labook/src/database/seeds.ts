@@ -4,6 +4,10 @@ class DatabaseSeeder extends DatabaseConnection {
   async connect(sql: string) {
     DatabaseConnection.connection(sql)
   }
+
+  async destroy() {
+    DatabaseConnection.destroy()
+  }
 }
 
 const seeder = new DatabaseSeeder()
@@ -55,9 +59,9 @@ seeder
   )
   .then(() => {
     console.log('Successful Seeding!')
-    process.exit()
+    seeder.destroy()
   })
   .catch((error) => {
     console.log('A error ocurred:', error.sqlMessage || error.message)
-    process.exit()
+    seeder.destroy()
   })

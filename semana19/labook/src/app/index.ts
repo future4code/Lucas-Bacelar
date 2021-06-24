@@ -3,7 +3,7 @@
 import cors from 'cors'
 import express, { Express } from 'express'
 import { feedRoute, friendshipRoute, postRoute, userRoute } from './routes'
-import { errorHandler } from './services/middleware'
+import { errorHandler } from './services/errorHandler'
 
 const app: Express = express()
 app.use(express.json())

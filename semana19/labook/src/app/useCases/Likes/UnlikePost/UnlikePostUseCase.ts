@@ -1,7 +1,7 @@
 import { Like } from '../../../entities/Like'
 import { ILikesRepository } from '../../../repositories/ILikesRepository'
+import { errorAPI } from '../../../services/APIError'
 import { Authentication } from '../../../services/Authentication'
-import { errorAPI } from '../../../services/ErrorAPI'
 import { IUnlikePostRequestDTO, IUnlikePostResponseDTO } from './UnlikePostDTO'
 import { UnlikePostValidator } from './UnlikePostValidator'
 

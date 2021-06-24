@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { errorAPI } from '../../../services/ErrorAPI'
+import { errorAPI } from '../../../services/APIError'
 import { POST_TYPES } from '../../../types/Post'
 import { IGetUserFeedRequestDTO, IGetUserValidDataDTO } from './GetUserFeedDTO'
 

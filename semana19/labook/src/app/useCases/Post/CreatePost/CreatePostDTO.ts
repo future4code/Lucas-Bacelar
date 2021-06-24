@@ -1,3 +1,5 @@
+import { POST_TYPES } from '../../../types/Post'
+
 export interface ICreatePostRequestDTO {
   photo: any
   description: any

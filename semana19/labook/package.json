@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "migrations": "tsc && node ./build/database/migrations.js",
+    "seeds": "tsc && node ./build/database/seeds.js",
     "start": "npm run build && node --inspect ./build/src/app/index.js",
     "dev": "clear && ts-node-dev ./src/app/index.ts",
     "build": "clear && echo \"Transpiling files...\" && tsc && echo \"Done!\" ",

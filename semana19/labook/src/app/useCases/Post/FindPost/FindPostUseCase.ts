@@ -1,7 +1,7 @@
 import { Post } from '../../../entities/Post'
 import { IPostsRepository } from '../../../repositories/IPostsRepository'
+import { errorAPI } from '../../../services/APIError'
 import { Authentication } from '../../../services/Authentication'
-import { errorAPI } from '../../../services/ErrorAPI'
 import { IFindPostRequestDTO, IFindPostResponseDTO } from './FindPostDTO'
 import { FindPostValidator } from './FindPostValidator'
 
