@@ -1,0 +1,14 @@
+{
+  "name": "aula65",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exercicio1": "ts-node ./src/exercicio1.ts",
+    "exercicio2": "ts-node ./src/exercicio2.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
